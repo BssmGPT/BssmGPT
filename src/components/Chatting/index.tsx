@@ -1,3 +1,5 @@
+import * as S from "./style";
+
 export default function Chatting() {
-  return <></>;
+  return <S.ChattingBox></S.ChattingBox>;
 }
