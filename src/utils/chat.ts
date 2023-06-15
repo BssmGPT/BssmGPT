@@ -1,8 +1,6 @@
-// ChatGPT API 엔드포인트 URL
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 
-// ChatGPT에 대화를 보내고 응답을 받는 함수
-async function sendMessage(message: string) {
+export default async function sendMessage(message: string) {
   const response = await fetch(apiUrl, {
     method: 'POST',
     headers: {
@@ -16,14 +14,5 @@ async function sendMessage(message: string) {
   });
 
   const data = await response.json();
-  // const reply = data.choices[0].message.content;
   return data;
-}
-
-// 예시 대화
-export default async function exampleConversation() {
-  const userMessage = 'Hello!';
-  const reply = await sendMessage(userMessage);
-  console.log('User:', userMessage);
-  console.log('AI:', reply);
 }
