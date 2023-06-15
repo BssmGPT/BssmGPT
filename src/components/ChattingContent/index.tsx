@@ -7,7 +7,7 @@ import Flex from "../common/Flex";
 export default function ChattingContent() {
   return (
     <S.ChattingContentBox>
-      <S.Title>BSSMGPT</S.Title>
+      <S.Title>BssmGPT</S.Title>
       <Flex direction="row" gap="0.875rem">
         <S.List>
           <Flex direction="column" gap="0.5rem" alignitems="center">
