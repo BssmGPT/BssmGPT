@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     ::-webkit-scrollbar-thumb {
         background-color: rgba(217,217,227,.8);
-        border-color: rgba(255,255,255,var(--tw-border-opacity));
+        border-color: rgb(255,255,255);
         border-radius: 9999px;
         border-width: 0;
     }

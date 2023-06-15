@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ChattingFooter from "../ChattingFooter";
 import * as S from "./style";
 import SendIcon from "../../assets/icons/SendIcon";
@@ -28,6 +28,7 @@ export default function ChattingForm() {
           ref={textareaRef}
           rows={1}
           onChange={handleTextareaHeight}
+          placeholder="Send a message."
         />
         <S.SendButton disabled={!message}>
           <SendIcon />
