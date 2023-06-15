@@ -21,7 +21,8 @@ export const Title = styled.div`
   text-align: center;
 `;
 
-export const List = styled.div`
+export const List = styled.ul`
+  list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,12 +30,15 @@ export const List = styled.div`
   flex: 1;
 `;
 
-export const Item = styled.div`
+export const Item = styled.li`
   text-align: center;
   padding: 0.75rem;
   background-color: #ffffff0d;
   border-radius: 0.375rem;
   font-size: 0.875rem;
+  font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   line-height: 1.25rem;
 `;
 

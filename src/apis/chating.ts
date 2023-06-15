@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function chating() {
   const endpoint = "https://api.openai.com/v1/chat/completions";
-  const apiKey = "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";
+  const apiKey = import.meta.env.VITE_API_KEY;
   const modelId = "gpt-3.5-turbo";
 
   async function sendChatRequest(
