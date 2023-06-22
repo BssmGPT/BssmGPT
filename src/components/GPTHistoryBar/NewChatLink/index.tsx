@@ -1,4 +1,4 @@
-import AddIcon from "../../../assets/icons/AddIcon";
+import AddIcon from "@/assets/icons/AddIcon";
 import { StyledLink } from "./style";
 
 export default function NewChatLink() {

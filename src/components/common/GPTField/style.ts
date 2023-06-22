@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { color } from "../../../styles/theme.style";
+import { color } from "@/styles/theme.style";
 
 export const GPTBottomBox = styled.div`
   position: absolute;

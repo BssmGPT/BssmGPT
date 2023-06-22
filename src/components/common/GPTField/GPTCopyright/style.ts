@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { color } from "../../../../styles/theme.style";
+import { color } from "@/styles/theme.style";
 
 export const Copyright = styled.footer`
   padding: 0.75rem 1rem 1.5rem;

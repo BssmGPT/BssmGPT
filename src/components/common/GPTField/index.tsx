@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import GPTCopyright from "./GPTCopyright";
 import * as S from "./style";
-import SendIcon from "../../../assets/icons/SendIcon";
+import SendIcon from "@/assets/icons/SendIcon";
 
-export default function GPTBottom() {
+export default function GPTField() {
   const [message, setMessage] = useState("");
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);

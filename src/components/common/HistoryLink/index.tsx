@@ -1,4 +1,4 @@
-import ChattingIcon from "../../../assets/icons/ChattingIcon";
+import ChattingIcon from "@/assets/icons/ChattingIcon";
 import * as S from "./style";
 
 interface PropTypes {
