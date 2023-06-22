@@ -1,5 +1,5 @@
-import ChatHistory from "./components/ChatHistory";
-import Chatting from "./components/Chatting";
+import GPTHistory from "./components/GPTHistory";
+import GPTMain from "./components/GPTMain";
 import styled from "styled-components";
 import { GlobalStyle } from "./styles/global.style";
 import { color } from "./styles/theme.style";
@@ -11,14 +11,14 @@ function App() {
       <GlobalStyle />
 
       <Container>
-        <ChatHistoryWrapper>
-          <ChatHistory />
-        </ChatHistoryWrapper>
-        <ChattingWrapper>
+        <GPTHistoryWrapper>
+          <GPTHistory />
+        </GPTHistoryWrapper>
+        <GPTMainWrapper>
           <Routes>
-            <Route path="/:id?" element={<Chatting />} />
+            <Route path="/:id?" element={<GPTMain />} />
           </Routes>
-        </ChattingWrapper>
+        </GPTMainWrapper>
       </Container>
     </>
   );
@@ -33,13 +33,13 @@ export const Container = styled.div`
   display: flex;
 `;
 
-export const ChatHistoryWrapper = styled.div`
+export const GPTHistoryWrapper = styled.div`
   background-color: ${color.gray700};
   flex-shrink: 0;
   width: 260px;
   padding: 0.5rem;
 `;
 
-export const ChattingWrapper = styled.div`
+export const GPTMainWrapper = styled.div`
   flex-grow: 1;
 `;

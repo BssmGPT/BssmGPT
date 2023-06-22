@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { color } from "../../../styles/theme.style";
 
-export const ChattingContentBox = styled.div`
+export const GPTHomeContentBox = styled.div`
   width: 100%;
   max-width: 48rem;
   margin: 0 auto;

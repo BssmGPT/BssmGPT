@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { color } from "../../../../styles/theme.style";
 
-export const Footer = styled.footer`
+export const Copyright = styled.footer`
   padding: 0.75rem 1rem 1.5rem;
   color: ${color.gray200};
   font-size: 0.75rem;

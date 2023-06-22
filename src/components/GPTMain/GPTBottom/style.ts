@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { color } from "../../../styles/theme.style";
 
-export const ChattingFormBox = styled.div`
+export const GPTBottomBox = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;

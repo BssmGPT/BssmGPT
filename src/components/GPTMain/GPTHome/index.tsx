@@ -5,9 +5,9 @@ import CautionIcon from "../../../assets/icons/CautionIcon";
 import ContentItem from "../../common/ContentItem";
 import { Column, Row } from "../../common/Flex";
 
-export default function ChattingContent() {
+export default function GPTHome() {
   return (
-    <S.ChattingContentBox>
+    <S.GPTHomeContentBox>
       <S.Title>BSSMGPT</S.Title>
       <Row gap="0.875rem">
         <Column gap="0.875rem" alignitems="center" style={{ flex: 1 }}>
@@ -56,6 +56,6 @@ export default function ChattingContent() {
           </ContentItem>
         </Column>
       </Row>
-    </S.ChattingContentBox>
+    </S.GPTHomeContentBox>
   );
 }

@@ -1,10 +1,10 @@
-import { Footer } from "./style";
+import { Copyright } from "./style";
 
-export default function ChattingFooter() {
+export default function GPTCopyright() {
   return (
-    <Footer>
+    <Copyright>
       Free Research Preview. ChatGPT may produce inaccurate information about
       people, places, or facts. ChatGPT May 24 Version
-    </Footer>
+    </Copyright>
   );
 }

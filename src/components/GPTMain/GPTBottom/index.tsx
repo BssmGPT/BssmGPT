@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import ChattingFooter from "./ChattingFooter";
+import GPTCopyright from "./GPTCopyright";
 import * as S from "./style";
 import SendIcon from "../../../assets/icons/SendIcon";
 
-export default function ChattingForm() {
+export default function GPTBottom() {
   const [message, setMessage] = useState("");
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -22,7 +22,7 @@ export default function ChattingForm() {
   };
 
   return (
-    <S.ChattingFormBox>
+    <S.GPTBottomBox>
       <S.Form>
         <S.Textarea
           ref={textareaRef}
@@ -34,7 +34,7 @@ export default function ChattingForm() {
           <SendIcon />
         </S.SendButton>
       </S.Form>
-      <ChattingFooter />
-    </S.ChattingFormBox>
+      <GPTCopyright />
+    </S.GPTBottomBox>
   );
 }
