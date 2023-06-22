@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import GPTHome from "./GPTHome";
 import GPTBottom from "./GPTBottom";
 import * as S from "./style";
+import GPTContent from "./GPTContent";
 
 export default function GPTMain() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ export default function GPTMain() {
 
   return (
     <S.GPTMainBox>
-      {id ? <>asd</> : <GPTHome />}
+      {id ? <GPTContent id={id} /> : <GPTHome />}
       <GPTBottom />
     </S.GPTMainBox>
   );
