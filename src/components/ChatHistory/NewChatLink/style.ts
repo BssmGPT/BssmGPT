@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { color } from "../../../styles/theme.style";
+import { Link } from "react-router-dom";
 
-export const NewChatLinkLayout = styled.a`
+export const StyledLink = styled(Link)`
   border-radius: 0.375rem;
   gap: 0.75rem;
   display: flex;
@@ -15,6 +16,8 @@ export const NewChatLinkLayout = styled.a`
   cursor: pointer;
   display: flex;
   line-height: 1.25rem;
+  text-decoration: none;
+
   &:hover {
     color: ${color.white};
     background-color: rgb(141, 141, 160, 0.1);

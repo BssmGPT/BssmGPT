@@ -6,6 +6,7 @@ export const ChattingFormBox = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
+  padding: 0 0.5rem;
 `;
 
 export const Form = styled.form`
@@ -37,7 +38,7 @@ export const SendButton = styled.button`
   position: absolute;
   right: 0.75em;
   bottom: 0.75rem;
-  padding: 8px;
+  padding: 0.5rem;
   border: none;
   display: flex;
   background: transparent;
@@ -60,11 +61,11 @@ export const Textarea = styled.textarea`
   resize: none;
   width: 100%;
   max-height: 200px;
-  padding-right: 48px;
+  padding-right: 3rem;
   background: transparent;
   border: none;
   line-height: 1.5rem;
-  font-size: 16px;
+  font-size: 1rem;
   font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
     Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial,
     Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;

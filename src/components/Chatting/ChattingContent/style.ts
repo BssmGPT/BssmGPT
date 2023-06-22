@@ -12,10 +12,18 @@ export const ChattingContentBox = styled.div`
   gap: 4rem;
 
   color: ${color.gray100};
+
+  @media (min-width: 768px) {
+    max-width: 42rem;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 48rem;
+  }
 `;
 
 export const Title = styled.div`
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: 600;
   color: ${color.white};
   text-align: center;

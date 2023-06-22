@@ -3,38 +3,43 @@ import Chatting from "./components/Chatting";
 import styled from "styled-components";
 import { GlobalStyle } from "./styles/global.style";
 import { color } from "./styles/theme.style";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <TemplateBox>
-        <ChatHistoryFrame>
+
+      <Container>
+        <ChatHistoryWrapper>
           <ChatHistory />
-        </ChatHistoryFrame>
-        <ChattingFrame>
-          <Chatting />
-        </ChattingFrame>
-      </TemplateBox>
+        </ChatHistoryWrapper>
+        <ChattingWrapper>
+          <Routes>
+            <Route path="/:id?" element={<Chatting />} />
+          </Routes>
+        </ChattingWrapper>
+      </Container>
     </>
   );
 }
 
 export default App;
 
-export const TemplateBox = styled.div`
+export const Container = styled.div`
   background-color: ${color.gray600};
   width: 100vw;
   height: 100vh;
   display: flex;
 `;
 
-export const ChatHistoryFrame = styled.div`
+export const ChatHistoryWrapper = styled.div`
   background-color: ${color.gray700};
+  flex-shrink: 0;
   width: 260px;
   padding: 0.5rem;
 `;
 
-export const ChattingFrame = styled.div`
+export const ChattingWrapper = styled.div`
   flex-grow: 1;
 `;

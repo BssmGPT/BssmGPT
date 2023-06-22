@@ -1,11 +1,11 @@
 import AddIcon from "../../../assets/icons/AddIcon";
-import { NewChatLinkLayout } from "./style";
+import { StyledLink } from "./style";
 
 export default function NewChatLink() {
   return (
-    <NewChatLinkLayout>
+    <StyledLink to="/">
       <AddIcon />
       New chat
-    </NewChatLinkLayout>
+    </StyledLink>
   );
 }
