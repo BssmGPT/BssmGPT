@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "../../styles/theme.style";
+import { color } from "../../../styles/theme.style";
 
 export const NewChatLinkLayout = styled.a`
   border-radius: 0.375rem;

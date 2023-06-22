@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-import ChattingFooter from "../ChattingFooter";
+import ChattingFooter from "./ChattingFooter";
 import * as S from "./style";
-import SendIcon from "../../assets/icons/SendIcon";
+import SendIcon from "../../../assets/icons/SendIcon";
 
 export default function ChattingForm() {
   const [message, setMessage] = useState("");

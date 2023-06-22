@@ -1,4 +1,4 @@
-import NewChatLink from "../NewChatLink";
+import NewChatLink from "./NewChatLink";
 import { ChatHistoryBox } from "./style";
 
 export default function ChatHistory() {
