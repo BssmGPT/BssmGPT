@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 
 interface FlexPropTypes {
-  direction?: "row" | "column" | "row-reverse" | "column-reverse";
   gap?: string;
   alignitems?:
     | "stretch"
@@ -18,8 +17,36 @@ interface FlexPropTypes {
     | "space-between"
     | "space-around"
     | "space-evenly";
+  children: React.ReactNode;
+  style?: React.CSSProperties;
 }
-const Flex = styled.div<FlexPropTypes>`
+
+interface DirectionalFlexPropTypes extends FlexPropTypes {
+  direction: "row" | "row-reverse" | "column" | "column-reverse";
+}
+
+function FlexBox({
+  gap,
+  alignitems,
+  justifycontent,
+  children,
+  style,
+  direction,
+}: DirectionalFlexPropTypes) {
+  return (
+    <StyledFlexBox
+      style={style}
+      direction={direction}
+      gap={gap}
+      alignitems={alignitems}
+      justifycontent={justifycontent}
+    >
+      {children}
+    </StyledFlexBox>
+  );
+}
+
+const StyledFlexBox = styled.div<DirectionalFlexPropTypes>`
   display: flex;
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => gap};
@@ -27,4 +54,42 @@ const Flex = styled.div<FlexPropTypes>`
   justify-content: ${({ justifycontent }) => justifycontent};
 `;
 
-export default Flex;
+export function Row({
+  gap,
+  alignitems,
+  justifycontent,
+  children,
+  style,
+}: FlexPropTypes) {
+  return (
+    <FlexBox
+      direction="row"
+      gap={gap}
+      alignitems={alignitems}
+      justifycontent={justifycontent}
+      style={style}
+    >
+      {children}
+    </FlexBox>
+  );
+}
+
+export function Column({
+  gap,
+  alignitems,
+  justifycontent,
+  children,
+  style,
+}: FlexPropTypes) {
+  return (
+    <FlexBox
+      direction="column"
+      gap={gap}
+      alignitems={alignitems}
+      justifycontent={justifycontent}
+      style={style}
+    >
+      {children}
+    </FlexBox>
+  );
+}

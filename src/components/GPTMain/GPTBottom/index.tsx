@@ -1,9 +1,9 @@
-import { ChangeEvent, useRef, useState } from "react";
-import ChattingFooter from "../ChattingFooter";
+import { useRef, useState } from "react";
+import GPTCopyright from "./GPTCopyright";
 import * as S from "./style";
-import SendIcon from "../../assets/icons/SendIcon";
+import SendIcon from "../../../assets/icons/SendIcon";
 
-export default function ChattingForm() {
+export default function GPTBottom() {
   const [message, setMessage] = useState("");
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -22,18 +22,19 @@ export default function ChattingForm() {
   };
 
   return (
-    <S.ChattingFormBox>
+    <S.GPTBottomBox>
       <S.Form>
         <S.Textarea
           ref={textareaRef}
           rows={1}
           onChange={handleTextareaHeight}
+          placeholder="Send a message."
         />
         <S.SendButton disabled={!message}>
           <SendIcon />
         </S.SendButton>
       </S.Form>
-      <ChattingFooter />
-    </S.ChattingFormBox>
+      <GPTCopyright />
+    </S.GPTBottomBox>
   );
 }

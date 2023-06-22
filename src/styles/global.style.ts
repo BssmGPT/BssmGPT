@@ -1,10 +1,12 @@
 import { createGlobalStyle } from "styled-components";
+import "./font-face.style.css";
 
 export const GlobalStyle = createGlobalStyle`
     * {
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+        font-family: Söhne, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     }
 
     ::-webkit-scrollbar {
@@ -12,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     ::-webkit-scrollbar-thumb {
         background-color: rgba(217,217,227,.8);
-        border-color: rgba(255,255,255,var(--tw-border-opacity));
+        border-color: rgb(255,255,255);
         border-radius: 9999px;
         border-width: 0;
     }
