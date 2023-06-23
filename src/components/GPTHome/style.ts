@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { color } from "@/styles/theme.style";
 
-export const GPTHomeWrapper = styled.div`
+export const Container = styled.div`
   height: 100vh;
   padding-top: 20vh;
   position: relative;
 `;
 
-export const GPTHomeContentBox = styled.div`
+export const ContentsBox = styled.div`
   width: 100%;
   max-width: 48rem;
   margin: 0 auto;

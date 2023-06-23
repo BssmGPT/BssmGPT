@@ -9,6 +9,15 @@ export const GlobalStyle = createGlobalStyle`
         font-family: Söhne, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     }
 
+    button {
+        border: none;
+        cursor: pointer;
+    }
+
+    svg {
+        display: block;
+    }
+
     ::-webkit-scrollbar {
         width: 0.5em;
     }

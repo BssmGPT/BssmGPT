@@ -20,7 +20,7 @@ export const GradientBox = styled.div`
   );
 `;
 
-export const Item = styled(Link)`
+export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 12px;

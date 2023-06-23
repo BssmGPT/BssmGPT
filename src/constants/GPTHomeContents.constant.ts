@@ -1,4 +1,10 @@
-export default <{ keyWord: string; descriptions: string[]; type?: "button" }[]>[
+interface GPTHomeContentTypes {
+  keyWord: string;
+  descriptions: string[];
+  type?: "button";
+}
+
+export default <GPTHomeContentTypes[]>[
   {
     keyWord: "Examples",
     descriptions: [

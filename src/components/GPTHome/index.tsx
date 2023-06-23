@@ -18,8 +18,8 @@ export default function GPTHome() {
   };
 
   return (
-    <S.GPTHomeWrapper>
-      <S.GPTHomeContentBox>
+    <S.Container>
+      <S.ContentsBox>
         <S.Title>BSSMGPT</S.Title>
         <Row gap="0.875rem">
           {GPTHomeContents.map((content, index) => (
@@ -41,8 +41,8 @@ export default function GPTHome() {
             </Column>
           ))}
         </Row>
-      </S.GPTHomeContentBox>
+      </S.ContentsBox>
       <GPTField handleSubmit={handleSubmit} />
-    </S.GPTHomeWrapper>
+    </S.Container>
   );
 }

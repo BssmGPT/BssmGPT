@@ -22,7 +22,7 @@ export default function GPTField({ handleSubmit }: PropTypes) {
   };
 
   return (
-    <S.GPTBottomBox>
+    <S.Container>
       <S.Form ref={formRef} onSubmit={handleSubmit}>
         <S.Textarea
           ref={textareaRef}
@@ -31,11 +31,11 @@ export default function GPTField({ handleSubmit }: PropTypes) {
           placeholder="Send a message."
           value={value}
         />
-        <S.SendButton disabled={!value}>
+        <S.SubmitButton disabled={!value}>
           <SendIcon />
-        </S.SendButton>
+        </S.SubmitButton>
       </S.Form>
       <GPTCopyright />
-    </S.GPTBottomBox>
+    </S.Container>
   );
 }
