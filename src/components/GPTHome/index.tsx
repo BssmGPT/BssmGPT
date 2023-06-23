@@ -6,11 +6,14 @@ import { GPTHomeItem } from "@/components/common/GPTHomeItem";
 import { Column, Row } from "@/components/common/Flex";
 import GPTField from "../common/GPTField";
 import GPTHomeContents from "@/constants/GPTHomeContents.constant";
+import { FormEvent } from "react";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+
     console.log("submit");
   };
 
@@ -30,9 +33,11 @@ export default function GPTHome() {
                 {keyWordIcons[index]}
                 <S.KeyWord>{content.keyWord}</S.KeyWord>
               </Column>
-              <GPTHomeItem type="button">{content.descriptions[0]}</GPTHomeItem>
-              <GPTHomeItem type="button">{content.descriptions[1]}</GPTHomeItem>
-              <GPTHomeItem type="button">{content.descriptions[2]}</GPTHomeItem>
+              <GPTHomeItem type={content.type}>
+                {content.descriptions[0]}
+              </GPTHomeItem>
+              <GPTHomeItem>{content.descriptions[1]}</GPTHomeItem>
+              <GPTHomeItem>{content.descriptions[2]}</GPTHomeItem>
             </Column>
           ))}
         </Row>

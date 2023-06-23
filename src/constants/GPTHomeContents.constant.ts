@@ -1,4 +1,4 @@
-export default [
+export default <{ keyWord: string; descriptions: string[]; type?: "button" }[]>[
   {
     keyWord: "Examples",
     descriptions: [
@@ -6,6 +6,7 @@ export default [
       '"Got any creative ideas for a 10 year old’s birthday?" →',
       '"How do I make an HTTP request in Javascript?" →',
     ],
+    type: "button",
   },
   {
     keyWord: "Capabilities",
