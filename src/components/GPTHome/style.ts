@@ -44,7 +44,7 @@ export const List = styled.ul`
   flex: 1;
 `;
 
-export const Overview = styled.div`
+export const KeyWord = styled.div`
   font-size: 1.125rem;
   line-height: 1.75rem;
 `;
