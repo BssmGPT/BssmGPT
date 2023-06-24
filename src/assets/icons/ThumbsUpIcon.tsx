@@ -1,4 +1,4 @@
-export default function AddIcon() {
+export default function ThumbsUpIcon() {
   return (
     <svg
       stroke="currentColor"
@@ -7,12 +7,11 @@ export default function AddIcon() {
       viewBox="0 0 24 24"
       strokeLinecap="round"
       strokeLinejoin="round"
-      height="1.2rem"
-      width="1.2rem"
+      height="1rem"
+      width="1rem"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <line x1="12" y1="5" x2="12" y2="19"></line>
-      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
     </svg>
   );
 }

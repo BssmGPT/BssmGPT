@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
-import { color } from "../../../styles/theme.style";
+import { color } from "@/styles/theme.style";
 
-export const GPTBottomBox = styled.div`
+export const Container = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -33,7 +33,7 @@ export const Form = styled.form`
   }
 `;
 
-export const SendButton = styled.button`
+export const SubmitButton = styled.button`
   border-radius: 0.375rem;
   position: absolute;
   right: 0.75em;

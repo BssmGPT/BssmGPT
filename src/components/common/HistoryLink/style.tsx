@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "../../../styles/theme.style";
+import { color } from "@/styles/theme.style";
 import { Link } from "react-router-dom";
 
 export const Title = styled.div`
@@ -20,7 +20,7 @@ export const GradientBox = styled.div`
   );
 `;
 
-export const Item = styled(Link)`
+export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 12px;

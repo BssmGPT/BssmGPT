@@ -1,4 +1,4 @@
-import ChattingIcon from "../../../assets/icons/ChattingIcon";
+import ChattingIcon from "@/assets/icons/ChattingIcon";
 import * as S from "./style";
 
 interface PropTypes {
@@ -6,14 +6,14 @@ interface PropTypes {
   title: string;
 }
 
-export default function HistoryItem({ id, title }: PropTypes) {
+export default function HistoryLink({ id, title }: PropTypes) {
   return (
-    <S.Item to={`/${id}`}>
+    <S.StyledLink to={`/${id}`}>
       <ChattingIcon />
       <S.Title>
         {title}
         <S.GradientBox />
       </S.Title>
-    </S.Item>
+    </S.StyledLink>
   );
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color } from "../../../styles/theme.style";
+import { color } from "@/styles/theme.style";
 
 export const Item = styled.div`
   text-align: center;
@@ -14,7 +14,6 @@ export const Item = styled.div`
 `;
 
 export const ItemButton = styled(Item)`
-  cursor: pointer;
   &:hover {
     background-color: ${color.gray700};
   }

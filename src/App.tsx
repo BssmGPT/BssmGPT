@@ -1,9 +1,10 @@
-import GPTHistory from "./components/GPTHistory";
-import GPTMain from "./components/GPTMain";
+import GPTHistoryBar from "./components/GPTHistoryBar";
 import styled from "styled-components";
 import { GlobalStyle } from "./styles/global.style";
 import { color } from "./styles/theme.style";
 import { Route, Routes } from "react-router-dom";
+import GPTHome from "./components/GPTHome";
+import GPTContent from "./components/GPTContent";
 
 function App() {
   return (
@@ -11,12 +12,13 @@ function App() {
       <GlobalStyle />
 
       <Container>
-        <GPTHistoryWrapper>
-          <GPTHistory />
-        </GPTHistoryWrapper>
+        <GPTHistoryBarWrapper>
+          <GPTHistoryBar />
+        </GPTHistoryBarWrapper>
         <GPTMainWrapper>
           <Routes>
-            <Route path="/:id?" element={<GPTMain />} />
+            <Route path="/" element={<GPTHome />} />
+            <Route path="/:id" element={<GPTContent />} />
           </Routes>
         </GPTMainWrapper>
       </Container>
@@ -33,7 +35,7 @@ export const Container = styled.div`
   display: flex;
 `;
 
-export const GPTHistoryWrapper = styled.div`
+export const GPTHistoryBarWrapper = styled.div`
   background-color: ${color.gray700};
   flex-shrink: 0;
   width: 260px;

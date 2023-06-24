@@ -1,11 +1,11 @@
 import * as S from "./style";
 
 interface PropTypes {
-  type?: "button";
   children: React.ReactNode;
+  type?: "button";
 }
 
-export default function ContentItem({ type, children }: PropTypes) {
+export function GPTHomeItem({ children, type }: PropTypes) {
   return type === "button" ? (
     <S.ItemButton>{children}</S.ItemButton>
   ) : (

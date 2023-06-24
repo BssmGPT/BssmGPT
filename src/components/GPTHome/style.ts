@@ -1,7 +1,13 @@
 import styled from "styled-components";
-import { color } from "../../../styles/theme.style";
+import { color } from "@/styles/theme.style";
 
-export const GPTHomeContentBox = styled.div`
+export const Container = styled.div`
+  height: 100vh;
+  padding-top: 20vh;
+  position: relative;
+`;
+
+export const ContentsBox = styled.div`
   width: 100%;
   max-width: 48rem;
   margin: 0 auto;
@@ -38,7 +44,7 @@ export const List = styled.ul`
   flex: 1;
 `;
 
-export const Overview = styled.div`
+export const KeyWord = styled.div`
   font-size: 1.125rem;
   line-height: 1.75rem;
 `;

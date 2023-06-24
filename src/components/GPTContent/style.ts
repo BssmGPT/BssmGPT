@@ -1,7 +1,8 @@
 import { styled } from "styled-components";
 
-export const GPTMainBox = styled.div`
+export const Wrapper = styled.div`
   height: 100vh;
-  padding-top: 20vh;
   position: relative;
 `;
+
+export const List = styled.div``;
