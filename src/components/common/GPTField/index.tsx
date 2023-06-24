@@ -3,7 +3,7 @@ import GPTCopyright from "./GPTCopyright";
 import * as S from "./style";
 import SendIcon from "@/assets/icons/SendIcon";
 import { useRecoilState } from "recoil";
-import { valueState } from "@/recoil/gptField/atom";
+import { valueState } from "@/recoil/gptField.atom";
 import { handleTextareaHeight } from "@/utils/handleTextareaHeight";
 
 interface PropTypes {

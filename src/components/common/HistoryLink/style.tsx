@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { color } from "@/styles/theme.style";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,7 @@ export const GradientBox = styled.div`
   );
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)<{ $isCurrentPage: boolean }>`
   display: flex;
   align-items: center;
   gap: 12px;
@@ -30,15 +30,29 @@ export const StyledLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
 
-  &:hover {
-    background: ${color.gray750};
+  ${({ $isCurrentPage }) =>
+    $isCurrentPage
+      ? css`
+          background: ${color.gray600};
+          & ${GradientBox} {
+            background-image: linear-gradient(
+              to left,
+              ${color.gray600},
+              rgba(52, 53, 65, 0)
+            );
+          }
+        `
+      : css`
+          &:hover {
+            background: ${color.gray750};
 
-    & ${GradientBox} {
-      background-image: linear-gradient(
-        to left,
-        ${color.gray750},
-        rgba(42, 43, 50, 0)
-      );
-    }
-  }
+            & ${GradientBox} {
+              background-image: linear-gradient(
+                to left,
+                ${color.gray750},
+                rgba(42, 43, 50, 0)
+              );
+            }
+          }
+        `}
 `;

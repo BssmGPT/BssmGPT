@@ -37,7 +37,7 @@ export default function GPTChatItem({ chatItem }: PropTypes) {
           ) : (
             <>
               <S.ButtonWrapper>
-                <S.ButtonContainer $alwaysshow>
+                <S.ButtonContainer $alwaysShow>
                   <S.Button>
                     <CopyIcon />
                   </S.Button>

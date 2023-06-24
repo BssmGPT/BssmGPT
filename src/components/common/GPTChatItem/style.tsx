@@ -55,7 +55,7 @@ export const Text = styled.p``;
 
 export const ButtonWrapper = styled.div``;
 
-export const ButtonContainer = styled.div<{ $alwaysshow?: boolean }>`
+export const ButtonContainer = styled.div<{ $alwaysShow?: boolean }>`
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
@@ -63,7 +63,8 @@ export const ButtonContainer = styled.div<{ $alwaysshow?: boolean }>`
 
   @media (min-width: 1024px) {
     ${Wrapper}:not(:hover) & {
-      display: ${({ $alwaysshow }) => ($alwaysshow ? "flex" : "none")};
+      display: ${({ $alwaysShow: $alwaysshow }) =>
+        $alwaysshow ? "flex" : "none"};
     }
 
     position: absolute;
@@ -73,17 +74,6 @@ export const ButtonContainer = styled.div<{ $alwaysshow?: boolean }>`
     margin: 0;
     transform: translateX(100%);
     gap: 0.25rem;
-  }
-`;
-
-export const BottomButtonGroup = styled.div`
-  padding-top: 0.5rem;
-  @media (min-width: 768px) {
-    display: flex;
-  }
-
-  @media (min-width: 1024px) {
-    display: none;
   }
 `;
 

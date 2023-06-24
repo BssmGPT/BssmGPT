@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const ContentsBox = styled.div`
   width: 100%;
   max-width: 48rem;
-  margin: 0 auto;
+  margin: auto;
   padding: 0 1.5rem;
 
   display: flex;
