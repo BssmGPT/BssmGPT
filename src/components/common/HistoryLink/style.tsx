@@ -20,7 +20,23 @@ export const GradientBox = styled.div`
   );
 `;
 
+export const ButtonContainer = styled.div`
+  position: absolute;
+  right: 0.25rem;
+`;
+
+export const Button = styled.button`
+  padding: 0.25rem;
+  background: transparent;
+  color: ${color.gray200};
+
+  &:hover {
+    color: white;
+  }
+`;
+
 export const StyledLink = styled(Link)<{ $isCurrentPage: boolean }>`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
