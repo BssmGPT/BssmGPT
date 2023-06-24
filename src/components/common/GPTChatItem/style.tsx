@@ -32,11 +32,6 @@ export const Container = styled.div`
   }
 `;
 
-export const ProfileImage = styled.img`
-  width: 30px;
-  height: 30px;
-`;
-
 export const Content = styled.div<{ role: "user" | "gpt" }>`
   position: relative;
   width: calc(100% - 50px);
