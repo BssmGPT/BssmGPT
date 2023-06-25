@@ -6,16 +6,17 @@ import { GPTHomeItem } from "@/components/common/GPTHomeItem";
 import { Column, Row } from "@/components/common/Flex";
 import GPTField from "../common/GPTField";
 import GPTHomeContents from "@/constants/GPTHomeContents.constant";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { valueState } from "@/recoil/gptField.atom";
+import { useCallback } from "react";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
-  const [value, setValue] = useRecoilState(valueState);
+  const setValue = useSetRecoilState(valueState);
 
-  const handleSubmit = () => {
-    console.log(`submit ${value}`);
-  };
+  const handleSubmit = useCallback((value: string) => {
+    console.log(value);
+  }, []);
 
   const inputDesciption = (description: string) => {
     setValue(description);

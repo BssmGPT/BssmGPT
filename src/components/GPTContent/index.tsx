@@ -4,7 +4,7 @@ import * as S from "./style";
 import GPTChatItem from "@/components/common/GPTChatItem";
 import GPTField from "../common/GPTField";
 import { useRecoilValue } from "recoil";
-import { valueState } from "@/recoil/gptField.atom";
+import { useCallback } from "react";
 
 export default function GPTContent() {
   const { id } = useParams();
@@ -12,11 +12,9 @@ export default function GPTContent() {
 
   const chat = historyItems.find((item) => item.id === id)?.chat;
 
-  const value = useRecoilValue(valueState);
-
-  const handleSubmit = () => {
-    console.log(`submit ${value}`);
-  };
+  const handleSubmit = useCallback((value: string) => {
+    console.log(value);
+  }, []);
 
   return (
     <S.Wrapper style={{ color: "white" }}>

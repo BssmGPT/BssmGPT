@@ -14,7 +14,7 @@ export const Container = styled.div`
   );
 `;
 
-export const Form = styled.form`
+export const Field = styled.div`
   position: relative;
   display: flex;
   align-items: center;
