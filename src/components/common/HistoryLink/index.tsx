@@ -2,10 +2,10 @@ import ChattingIcon from "@/assets/icons/ChattingIcon";
 import * as S from "./style";
 import TitleEditIcon from "@/assets/icons/TitleEditIcon";
 import DeleteIcon from "@/assets/icons/DeleteIcon";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import CheckIcon from "@/assets/icons/CheckIcon";
 import CancelIcon from "@/assets/icons/CancelIcon";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import HistoryItemState from "@/constants/History.constant";
 import { useNavigate } from "react-router-dom";
 
@@ -20,26 +20,26 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
 
   const titleInputRef = useRef<HTMLInputElement>(null);
 
-  const [edit, setEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [isCheck, setIsCheck] = useState(false);
   const [titleValue, setTitleValue] = useState(title);
   const [historyItem, setHistoryItem] = useRecoilState(HistoryItemState);
 
+  // console.log(`${id} - edit: ${edit}`);
+
   const deleteHistory = () => {
     setIsCheck(false);
-
     setHistoryItem([...historyItem.filter((item) => item.id !== id)]);
-
     navigate("/", { replace: true });
   };
 
   const cancelEdit = () => {
     setTitleValue(title);
-    setEdit(false);
+    setIsEdit(false);
   };
 
   const changeTitle = () => {
-    setEdit(false);
+    setIsEdit(false);
 
     const changedItem = historyItem.find((item) => item.id === id);
 
@@ -51,14 +51,17 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
     }
   };
 
+  console.log(isCurrentPage, isEdit);
+
   return (
     <S.NavigateBox
-      onClick={() => isCheck || navigate(`/${id}`)}
+      onClick={() => navigate(`/${id}`)}
       $isCurrentPage={isCurrentPage}
-      $isEdit={edit}
+      $isEdit={isEdit}
+      $isCheck={isCheck}
     >
       {isCheck ? <DeleteIcon /> : <ChattingIcon />}
-      {edit ? (
+      {isEdit ? (
         <S.TitleInputWrapper
           onSubmit={(e) => {
             e.preventDefault();
@@ -80,40 +83,38 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
         </S.Title>
       )}
 
-      {isCurrentPage && (
-        <S.ButtonContainer>
-          {isCheck && (
-            <>
-              <S.IconButton onClick={deleteHistory}>
-                <CheckIcon />
-              </S.IconButton>
-              <S.IconButton onClick={() => setIsCheck(false)}>
-                <CancelIcon />
-              </S.IconButton>
-            </>
-          )}
-          {edit && (
-            <>
-              <S.IconButton onMouseDown={changeTitle}>
-                <CheckIcon />
-              </S.IconButton>
-              <S.IconButton onMouseDown={cancelEdit}>
-                <CancelIcon />
-              </S.IconButton>
-            </>
-          )}
-          {isCheck || edit || (
-            <>
-              <S.IconButton onClick={() => setEdit(true)}>
-                <TitleEditIcon />
-              </S.IconButton>
-              <S.IconButton onClick={() => setIsCheck(true)}>
-                <DeleteIcon />
-              </S.IconButton>
-            </>
-          )}
-        </S.ButtonContainer>
-      )}
+      <S.ButtonContainer>
+        {isEdit && (
+          <>
+            <S.IconButton onMouseDown={changeTitle}>
+              <CheckIcon />
+            </S.IconButton>
+            <S.IconButton onMouseDown={cancelEdit}>
+              <CancelIcon />
+            </S.IconButton>
+          </>
+        )}
+        {isCheck && (
+          <>
+            <S.IconButton onClick={deleteHistory}>
+              <CheckIcon />
+            </S.IconButton>
+            <S.IconButton onClick={() => setIsCheck(false)}>
+              <CancelIcon />
+            </S.IconButton>
+          </>
+        )}
+        {isCurrentPage && !isCheck && !isEdit && (
+          <>
+            <S.IconButton onClick={() => setIsEdit(true)}>
+              <TitleEditIcon />
+            </S.IconButton>
+            <S.IconButton onClick={() => setIsCheck(true)}>
+              <DeleteIcon />
+            </S.IconButton>
+          </>
+        )}
+      </S.ButtonContainer>
     </S.NavigateBox>
   );
 }

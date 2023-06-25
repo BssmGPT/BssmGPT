@@ -17,14 +17,14 @@ export default function Features() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  const serHistoryItem = useSetRecoilState(HistoryItemState);
+
   const closeMenuRef = useRef(({ target }: Event) => {
     if (!wrapperRef.current?.contains(target as Node)) {
       setIsOpen(false);
       document.removeEventListener("click", closeMenuRef.current);
     }
   });
-
-  const serHistoryItem = useSetRecoilState(HistoryItemState);
 
   useEffect(() => {
     if (isOpen) {

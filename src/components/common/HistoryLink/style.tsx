@@ -55,6 +55,7 @@ export const IconButton = styled.button`
 export const NavigateBox = styled.div<{
   $isCurrentPage: boolean;
   $isEdit: boolean;
+  $isCheck: boolean;
 }>`
   position: relative;
   display: flex;
@@ -68,10 +69,10 @@ export const NavigateBox = styled.div<{
   cursor: pointer;
   text-decoration: none;
 
-  ${({ $isCurrentPage, $isEdit }) =>
-    $isCurrentPage
+  ${({ $isCurrentPage, $isEdit, $isCheck }) =>
+    $isCurrentPage || $isEdit || $isCheck
       ? css`
-          padding-right: ${$isEdit ? "3.5rem" : "4.5rem"};
+          padding-right: ${$isEdit || $isCheck ? "3.5rem" : "4.5rem"};
 
           background: ${color.gray600};
 
