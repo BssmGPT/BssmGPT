@@ -3,8 +3,13 @@ import { color } from "@/styles/theme.style";
 import { Link } from "react-router-dom";
 
 export const Title = styled.div`
-  flex: 1;
+  flex: 1 1 0%;
+  word-break: break-all;
+  overflow: hidden;
+  max-height: 1.25rem;
   position: relative;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 `;
 
 export const GradientBox = styled.div`
@@ -49,7 +54,10 @@ export const StyledLink = styled(Link)<{ $isCurrentPage: boolean }>`
   ${({ $isCurrentPage }) =>
     $isCurrentPage
       ? css`
+          padding-right: 4.5rem;
+
           background: ${color.gray600};
+
           & ${GradientBox} {
             background-image: linear-gradient(
               to left,
