@@ -1,25 +1,30 @@
 import UserProfileImage from "@/components/common/UserProfileImage";
 import * as S from "./style";
 import MenuIcon from "@/assets/icons/MenuIcon";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DeleteIcon from "@/assets/icons/DeleteIcon";
 import LinkIcon from "@/assets/icons/LinkIcon";
 import SettingsIcon from "@/assets/icons/SettingsIcon";
 import LogOutIcon from "@/assets/icons/LogOutIcon";
 import CheckIcon from "@/assets/icons/CheckIcon";
+import { useSetRecoilState } from "recoil";
+import HistoryItemState from "@/constants/History.constant";
 
 export default function Features() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCheck, setIsCheck] = useState(false);
+
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const toggleButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
   const closeMenuRef = useRef(({ target }: Event) => {
     if (!wrapperRef.current?.contains(target as Node)) {
       setIsOpen(false);
       document.removeEventListener("click", closeMenuRef.current);
     }
   });
+
+  const serHistoryItem = useSetRecoilState(HistoryItemState);
 
   useEffect(() => {
     if (isOpen) {
@@ -33,16 +38,14 @@ export default function Features() {
   }, [isOpen]);
 
   const deleteAllHistory = () => {
-    //
+    setIsCheck(false);
+    setIsOpen(false);
+    serHistoryItem([]);
   };
 
   return (
     <S.Wrapper ref={wrapperRef}>
-      <S.ToggleButton
-        ref={toggleButtonRef}
-        $isOpen={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <S.ToggleButton $isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
         <UserProfileImage size="1.25rem" />
         <S.UserName>asdf</S.UserName>
         <MenuIcon />
