@@ -8,9 +8,9 @@ import { valueState } from "@/recoil/gptField.atom";
 
 export default function GPTContent() {
   const { id } = useParams();
-  const historyItem = useRecoilValue(History);
+  const historyItems = useRecoilValue(History);
 
-  const chat = historyItem.find((item) => item.id === id)?.chat;
+  const chat = historyItems.find((item) => item.id === id)?.chat;
 
   const value = useRecoilValue(valueState);
 

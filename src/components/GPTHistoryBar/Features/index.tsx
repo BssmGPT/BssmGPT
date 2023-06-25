@@ -7,17 +7,20 @@ import LinkIcon from "@/assets/icons/LinkIcon";
 import SettingsIcon from "@/assets/icons/SettingsIcon";
 import LogOutIcon from "@/assets/icons/LogOutIcon";
 import CheckIcon from "@/assets/icons/CheckIcon";
-import { useSetRecoilState } from "recoil";
-import HistoryItemState from "@/constants/History.constant";
+import { useRecoilState } from "recoil";
+import HistoryItemsState from "@/constants/History.constant";
+import { useNavigate } from "react-router-dom";
 
 export default function Features() {
+  const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isCheck, setIsCheck] = useState(false);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const serHistoryItem = useSetRecoilState(HistoryItemState);
+  const [historyItems, serHistoryItems] = useRecoilState(HistoryItemsState);
 
   const closeMenuRef = useRef(({ target }: Event) => {
     if (!wrapperRef.current?.contains(target as Node)) {
@@ -40,7 +43,8 @@ export default function Features() {
   const deleteAllHistory = () => {
     setIsCheck(false);
     setIsOpen(false);
-    serHistoryItem([]);
+    serHistoryItems([]);
+    navigate("/");
   };
 
   return (
@@ -51,12 +55,14 @@ export default function Features() {
         <MenuIcon />
       </S.ToggleButton>
       <S.Menu ref={menuRef} className="hidden">
-        <S.Button
-          onClick={() => (isCheck ? deleteAllHistory() : setIsCheck(true))}
-        >
-          {isCheck ? <CheckIcon /> : <DeleteIcon />}
-          {isCheck ? "Confirm clear conversations" : "Clear conversations"}
-        </S.Button>
+        {historyItems.length > 0 && (
+          <S.Button
+            onClick={() => (isCheck ? deleteAllHistory() : setIsCheck(true))}
+          >
+            {isCheck ? <CheckIcon /> : <DeleteIcon />}
+            {isCheck ? "Confirm clear conversations" : "Clear conversations"}
+          </S.Button>
+        )}
         <S.Button
           onClick={() =>
             window.open(

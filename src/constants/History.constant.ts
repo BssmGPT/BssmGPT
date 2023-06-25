@@ -10,7 +10,7 @@ interface HistoryItemTypes {
   }[];
 }
 
-const HistoryItemData = <HistoryItemTypes[]>[
+const HistoryItemsData = <HistoryItemTypes[]>[
   {
     id: "123",
     title: "adsfasdfaasdfasdfasdfsdf",
@@ -49,9 +49,9 @@ const HistoryItemData = <HistoryItemTypes[]>[
   },
 ];
 
-const HistoryItemState = atom({
-  key: "HistoryItemState",
-  default: HistoryItemData,
+const HistoryItemsState = atom({
+  key: "HistoryItemsState",
+  default: HistoryItemsData,
 });
 
-export default HistoryItemState;
+export default HistoryItemsState;

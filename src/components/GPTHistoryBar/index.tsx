@@ -9,13 +9,13 @@ import { useRecoilValue } from "recoil";
 
 export default function GPTHistory() {
   const location = useLocation();
-  const historyItem = useRecoilValue(History);
+  const historyItems = useRecoilValue(History);
 
   return (
     <Container>
       <NewChatLink />
       <Column style={{ flex: 1 }}>
-        {historyItem.map((item) => (
+        {historyItems.map((item) => (
           <HistoryLink
             key={item.id}
             id={item.id}

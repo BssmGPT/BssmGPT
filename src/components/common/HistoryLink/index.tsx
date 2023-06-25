@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import CheckIcon from "@/assets/icons/CheckIcon";
 import CancelIcon from "@/assets/icons/CancelIcon";
 import { useRecoilState } from "recoil";
-import HistoryItemState from "@/constants/History.constant";
+import HistoryItemsState from "@/constants/History.constant";
 import { useNavigate } from "react-router-dom";
 
 interface PropTypes {
@@ -23,13 +23,13 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
   const [isEdit, setIsEdit] = useState(false);
   const [isCheck, setIsCheck] = useState(false);
   const [titleValue, setTitleValue] = useState(title);
-  const [historyItem, setHistoryItem] = useRecoilState(HistoryItemState);
+  const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
 
   // console.log(`${id} - edit: ${edit}`);
 
   const deleteHistory = () => {
     setIsCheck(false);
-    setHistoryItem([...historyItem.filter((item) => item.id !== id)]);
+    setHistoryItems([...historyItems.filter((item) => item.id !== id)]);
     navigate("/", { replace: true });
   };
 
@@ -41,12 +41,12 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
   const changeTitle = () => {
     setIsEdit(false);
 
-    const changedItem = historyItem.find((item) => item.id === id);
+    const changedItem = historyItems.find((item) => item.id === id);
 
     if (changedItem) {
-      setHistoryItem([
+      setHistoryItems([
         { ...changedItem, title: titleValue },
-        ...historyItem.filter((item) => item !== changedItem),
+        ...historyItems.filter((item) => item !== changedItem),
       ]);
     }
   };
