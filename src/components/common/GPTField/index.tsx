@@ -7,7 +7,7 @@ import { valueState } from "@/recoil/gptField.atom";
 import { handleTextareaHeight } from "@/utils/handleTextareaHeight";
 
 interface PropTypes {
-  handleSubmit: React.FormEventHandler<HTMLFormElement>;
+  handleSubmit: () => void;
 }
 
 export default function GPTField({ handleSubmit }: PropTypes) {
@@ -20,18 +20,30 @@ export default function GPTField({ handleSubmit }: PropTypes) {
     setValue(event.target.value);
     handleTextareaHeight(textareaRef.current);
   };
+  const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.shiftKey && event.key === "Enter") return;
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSubmit();
+      setValue("");
+    }
+  };
 
   useEffect(() => {
-    textareaRef.current?.focus();
-  }, [handleSubmit]);
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+      textareaRef.current.value = "";
+    }
+  }, [setValue, handleSubmit]);
 
   return (
     <S.Container>
-      <S.Form ref={formRef} onSubmit={handleSubmit}>
+      <S.Form ref={formRef}>
         <S.Textarea
           ref={textareaRef}
           rows={1}
           onChange={onChange}
+          onKeyDown={onKeyDown}
           placeholder="Send a message."
           value={value}
         />

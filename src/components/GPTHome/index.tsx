@@ -6,15 +6,15 @@ import { GPTHomeItem } from "@/components/common/GPTHomeItem";
 import { Column, Row } from "@/components/common/Flex";
 import GPTField from "../common/GPTField";
 import GPTHomeContents from "@/constants/GPTHomeContents.constant";
-import { FormEvent } from "react";
+import { useRecoilValue } from "recoil";
+import { valueState } from "@/recoil/gptField.atom";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
+  const value = useRecoilValue(valueState);
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-
-    console.log("submit");
+  const handleSubmit = () => {
+    console.log(`submit ${value}`);
   };
 
   return (

@@ -4,6 +4,7 @@ import * as S from "./style";
 import GPTChatItem from "@/components/common/GPTChatItem";
 import GPTField from "../common/GPTField";
 import { useRecoilValue } from "recoil";
+import { valueState } from "@/recoil/gptField.atom";
 
 export default function GPTContent() {
   const { id } = useParams();
@@ -11,8 +12,10 @@ export default function GPTContent() {
 
   const chat = historyItem.find((item) => item.id === id)?.chat;
 
-  const handleSubmit = (event: React.FormEvent) => {
-    console.log(event);
+  const value = useRecoilValue(valueState);
+
+  const handleSubmit = () => {
+    console.log(`submit ${value}`);
   };
 
   return (
