@@ -14,10 +14,8 @@ export default function Features() {
   useEffect(() => {
     if (isOpen) {
       menuRef.current?.classList.remove("hidden");
-      console.log("open");
     } else {
       menuRef.current?.classList.add("hidden");
-      console.log("close");
     }
   }, [isOpen]);
 

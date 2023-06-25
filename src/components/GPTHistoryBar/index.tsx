@@ -10,7 +10,7 @@ import { useRecoilValue } from "recoil";
 export default function GPTHistory() {
   const location = useLocation();
   const historyItem = useRecoilValue(History);
-  console.log("ASDFASDF");
+  // console.log("ASDFASDF");
 
   return (
     <Container>

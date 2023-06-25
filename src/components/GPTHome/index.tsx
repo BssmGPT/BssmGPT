@@ -36,8 +36,12 @@ export default function GPTHome() {
               <GPTHomeItem type={content.type}>
                 {content.descriptions[0]}
               </GPTHomeItem>
-              <GPTHomeItem>{content.descriptions[1]}</GPTHomeItem>
-              <GPTHomeItem>{content.descriptions[2]}</GPTHomeItem>
+              <GPTHomeItem type={content.type}>
+                {content.descriptions[1]}
+              </GPTHomeItem>
+              <GPTHomeItem type={content.type}>
+                {content.descriptions[2]}
+              </GPTHomeItem>
             </Column>
           ))}
         </Row>

@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { color } from "@/styles/theme.style";
-import { Link } from "react-router-dom";
 
 export const Title = styled.div`
   flex: 1 1 0%;
@@ -53,7 +52,7 @@ export const IconButton = styled.button`
   }
 `;
 
-export const StyledLink = styled(Link)<{
+export const NavigateBox = styled.div<{
   $isCurrentPage: boolean;
   $isEdit: boolean;
 }>`
@@ -64,6 +63,8 @@ export const StyledLink = styled(Link)<{
   padding: 0.75rem;
   border-radius: 0.375rem;
   color: ${color.gray100};
+  background: transparent;
+  text-align: left;
   cursor: pointer;
   text-decoration: none;
 

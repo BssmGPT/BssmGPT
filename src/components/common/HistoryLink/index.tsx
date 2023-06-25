@@ -7,6 +7,7 @@ import CheckIcon from "@/assets/icons/CheckIcon";
 import CancelIcon from "@/assets/icons/CancelIcon";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import HistoryItemState from "@/constants/History.constant";
+import { useNavigate } from "react-router-dom";
 
 interface PropTypes {
   id: string;
@@ -15,6 +16,8 @@ interface PropTypes {
 }
 
 export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
+  const navigate = useNavigate();
+
   const titleInputRef = useRef<HTMLInputElement>(null);
 
   const [edit, setEdit] = useState(false);
@@ -26,6 +29,12 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
     setCheck(false);
 
     console.log(`Delete ${id}: ${title}!`);
+
+    setHistoryItem([...historyItem.filter((item) => item.id !== id)]);
+
+    navigate("/", { replace: true });
+
+    console.log("ASFASFADSFAFDSA");
   };
 
   const cancelEdit = () => {
@@ -53,7 +62,11 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
   }, [edit]);
 
   return (
-    <S.StyledLink to={`/${id}`} $isCurrentPage={isCurrentPage} $isEdit={edit}>
+    <S.NavigateBox
+      onClick={() => check || navigate(`/${id}`)}
+      $isCurrentPage={isCurrentPage}
+      $isEdit={edit}
+    >
       {check ? <DeleteIcon /> : <ChattingIcon />}
       {edit ? (
         <S.TitleInputWrapper
@@ -110,6 +123,6 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
           )}
         </S.ButtonContainer>
       )}
-    </S.StyledLink>
+    </S.NavigateBox>
   );
 }

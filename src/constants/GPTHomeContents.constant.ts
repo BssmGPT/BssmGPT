@@ -1,5 +1,3 @@
-import { atom } from "recoil";
-
 interface GPTHomeContentTypes {
   keyWord: string;
   descriptions: string[];
