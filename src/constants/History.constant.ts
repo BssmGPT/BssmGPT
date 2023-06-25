@@ -1,3 +1,5 @@
+import { atom } from "recoil";
+
 interface HistoryItemTypes {
   id: string;
   title: string;
@@ -8,10 +10,10 @@ interface HistoryItemTypes {
   }[];
 }
 
-export default <HistoryItemTypes[]>[
+const HistoryItemData = <HistoryItemTypes[]>[
   {
     id: "123",
-    title: "adsf",
+    title: "adsfasdfaasdfasdfasdfsdf",
     chat: [
       { id: "123", role: "user", content: "Hi, How are you?" },
       { id: "124", role: "gpt", content: "How can I help you today?" },
@@ -23,7 +25,7 @@ export default <HistoryItemTypes[]>[
   },
   {
     id: "234",
-    title: "qwer",
+    title: "qwerqwerqwerqwreqwerqwer",
     chat: [
       { id: "234", role: "user", content: "What's up?" },
       { id: "235", role: "gpt", content: "How can I assist you today?" },
@@ -35,7 +37,7 @@ export default <HistoryItemTypes[]>[
   },
   {
     id: "345",
-    title: "zxc",
+    title: "zxczxczxzxvczxcvzxcvc",
     chat: [
       { id: "345", role: "user", content: "Can you speak Korean?" },
       { id: "346", role: "gpt", content: "무엇을 도와드릴까요?" },
@@ -46,3 +48,10 @@ export default <HistoryItemTypes[]>[
     ],
   },
 ];
+
+const HistoryItemState = atom({
+  key: "HistoryItemState",
+  default: HistoryItemData,
+});
+
+export default HistoryItemState;

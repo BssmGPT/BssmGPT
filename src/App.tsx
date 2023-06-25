@@ -39,7 +39,6 @@ export const GPTHistoryBarWrapper = styled.div`
   background-color: ${color.gray700};
   flex-shrink: 0;
   width: 260px;
-  padding: 0.5rem;
 `;
 
 export const GPTMainWrapper = styled.div`

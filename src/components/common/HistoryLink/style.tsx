@@ -1,10 +1,27 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { color } from "@/styles/theme.style";
-import { Link } from "react-router-dom";
 
 export const Title = styled.div`
-  flex: 1;
+  flex: 1 1 0%;
+  word-break: break-all;
+  overflow: hidden;
+  max-height: 1.25rem;
   position: relative;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+`;
+
+export const TitleInputWrapper = styled.form`
+  overflow: hidden;
+`;
+
+export const TitleInput = styled.input`
+  width: 100%;
+  display: block;
+  font-size: 0.875rem;
+  background: transparent;
+  color: ${color.gray100};
+  border: 1px solid #3662e3;
 `;
 
 export const GradientBox = styled.div`
@@ -20,25 +37,64 @@ export const GradientBox = styled.div`
   );
 `;
 
-export const StyledLink = styled(Link)`
+export const ButtonContainer = styled.div`
+  position: absolute;
+  right: 0.25rem;
+`;
+
+export const IconButton = styled.button`
+  padding: 0.25rem;
+  background: transparent;
+  color: ${color.gray200};
+
+  &:hover {
+    color: white;
+  }
+`;
+
+export const NavigateBox = styled.div<{
+  $isCurrentPage: boolean;
+  $isEdit: boolean;
+  $isCheck: boolean;
+}>`
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 0.75rem;
   border-radius: 0.375rem;
   color: ${color.gray100};
+  background: transparent;
+  text-align: left;
   cursor: pointer;
   text-decoration: none;
 
-  &:hover {
-    background: ${color.gray750};
+  ${({ $isCurrentPage, $isEdit, $isCheck }) =>
+    $isCurrentPage || $isEdit || $isCheck
+      ? css`
+          padding-right: ${$isEdit || $isCheck ? "3.5rem" : "4.5rem"};
 
-    & ${GradientBox} {
-      background-image: linear-gradient(
-        to left,
-        ${color.gray750},
-        rgba(42, 43, 50, 0)
-      );
-    }
-  }
+          background: ${color.gray600};
+
+          & ${GradientBox} {
+            background-image: linear-gradient(
+              to left,
+              ${color.gray600},
+              rgba(52, 53, 65, 0)
+            );
+          }
+        `
+      : css`
+          &:hover {
+            background: ${color.gray750};
+
+            & ${GradientBox} {
+              background-image: linear-gradient(
+                to left,
+                ${color.gray750},
+                rgba(42, 43, 50, 0)
+              );
+            }
+          }
+        `}
 `;

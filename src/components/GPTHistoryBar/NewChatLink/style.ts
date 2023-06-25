@@ -1,22 +1,19 @@
 import styled from "styled-components";
 import { color } from "@/styles/theme.style";
-import { Link } from "react-router-dom";
 
-export const StyledLink = styled(Link)`
-  border-radius: 0.375rem;
-  gap: 0.75rem;
-  display: flex;
+export const NavigateBox = styled.div`
+  height: 2.75rem;
   padding: 0.75rem;
-  font-size: 0.835rem;
+  display: flex;
   align-items: center;
+  gap: 0.75rem;
+  font-size: 0.835rem;
+  line-height: 1.25rem;
   margin-bottom: 0.25rem;
-  text-decoration: inherit;
   border: 1px solid hsla(0, 0%, 100%, 0.2);
+  border-radius: 0.375rem;
   color: ${color.white};
   cursor: pointer;
-  display: flex;
-  line-height: 1.25rem;
-  text-decoration: none;
 
   &:hover {
     color: ${color.white};

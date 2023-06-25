@@ -13,6 +13,10 @@ export const GlobalStyle = createGlobalStyle`
         border: none;
         cursor: pointer;
     }
+    input {
+        outline: none;
+        border: none;
+    }
 
     svg {
         display: block;

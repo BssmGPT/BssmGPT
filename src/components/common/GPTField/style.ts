@@ -7,6 +7,11 @@ export const Container = styled.div`
   left: 0;
   width: 100%;
   padding: 0 0.5rem;
+  background-image: linear-gradient(
+    180deg,
+    rgba(53, 55, 64, 0),
+    #353740 58.85%
+  );
 `;
 
 export const Form = styled.form`

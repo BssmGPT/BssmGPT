@@ -1,12 +1,11 @@
 import EditIcon from "@/assets/icons/EditIcon";
 import * as S from "./style";
-import Profile from "@/assets/profile.webp";
-import BSSMGPTProfile from "@/assets/bssm-gpt-profile.webp";
 import CopyIcon from "@/assets/icons/CopyIcon";
 import ThumbsUpIcon from "@/assets/icons/ThumbsUpIcon";
 import THumbsDownIcon from "@/assets/icons/ThumbsDownIcon";
 import { Row } from "../Flex";
-import GPTField from "../GPTField";
+import UserProfileImage from "../UserProfileImage";
+import GPTProfileImage from "../GPTProfileImage";
 
 interface PropTypes {
   chatItem: { role: "user" | "gpt"; content: string };
@@ -16,11 +15,7 @@ export default function GPTChatItem({ chatItem }: PropTypes) {
   return (
     <S.Wrapper role={chatItem.role}>
       <S.Container>
-        {chatItem.role === "user" ? (
-          <S.ProfileImage src={Profile} alt="profile-image" />
-        ) : (
-          <S.ProfileImage src={BSSMGPTProfile} />
-        )}
+        {chatItem.role === "user" ? <UserProfileImage /> : <GPTProfileImage />}
 
         <S.Content role={chatItem.role}>
           <S.Text>{chatItem.content}</S.Text>
@@ -37,7 +32,7 @@ export default function GPTChatItem({ chatItem }: PropTypes) {
           ) : (
             <>
               <S.ButtonWrapper>
-                <S.ButtonContainer $alwaysshow>
+                <S.ButtonContainer $alwaysShow>
                   <S.Button>
                     <CopyIcon />
                   </S.Button>
