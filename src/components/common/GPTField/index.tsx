@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import GPTCopyright from "./GPTCopyright";
 import * as S from "./style";
 import SendIcon from "@/assets/icons/SendIcon";
@@ -20,6 +20,10 @@ export default function GPTField({ handleSubmit }: PropTypes) {
     setValue(event.target.value);
     handleTextareaHeight(textareaRef.current);
   };
+
+  useEffect(() => {
+    textareaRef.current?.focus();
+  }, [handleSubmit]);
 
   return (
     <S.Container>

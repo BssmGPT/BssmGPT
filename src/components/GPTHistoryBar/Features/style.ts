@@ -1,5 +1,4 @@
 import { color } from "@/styles/theme.style";
-import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
@@ -9,7 +8,7 @@ export const Wrapper = styled.div`
   padding-top: 0.5rem;
 `;
 
-export const ToggleButton = styled.button`
+export const ToggleButton = styled.button<{ $isOpen: boolean }>`
   width: 100%;
   padding: 12px;
   border-radius: 0.375rem;
@@ -17,7 +16,7 @@ export const ToggleButton = styled.button`
   align-items: center;
   gap: 0.625rem;
   color: white;
-  background: transparent;
+  background: ${({ $isOpen }) => ($isOpen ? color.gray600 : "transparent")};
 
   transition-duration: 0.2s;
 
