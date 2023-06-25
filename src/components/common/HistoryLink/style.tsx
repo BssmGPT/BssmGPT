@@ -12,6 +12,19 @@ export const Title = styled.div`
   line-height: 1.25rem;
 `;
 
+export const TitleInputWrapper = styled.form`
+  overflow: hidden;
+`;
+
+export const TitleInput = styled.input`
+  width: 100%;
+  display: block;
+  font-size: 0.875rem;
+  background: transparent;
+  color: ${color.gray100};
+  border: 1px solid #3662e3;
+`;
+
 export const GradientBox = styled.div`
   width: 32px;
   position: absolute;
@@ -30,7 +43,7 @@ export const ButtonContainer = styled.div`
   right: 0.25rem;
 `;
 
-export const Button = styled.button`
+export const IconButton = styled.button`
   padding: 0.25rem;
   background: transparent;
   color: ${color.gray200};
@@ -40,7 +53,10 @@ export const Button = styled.button`
   }
 `;
 
-export const StyledLink = styled(Link)<{ $isCurrentPage: boolean }>`
+export const StyledLink = styled(Link)<{
+  $isCurrentPage: boolean;
+  $isEdit: boolean;
+}>`
   position: relative;
   display: flex;
   align-items: center;
@@ -51,10 +67,10 @@ export const StyledLink = styled(Link)<{ $isCurrentPage: boolean }>`
   cursor: pointer;
   text-decoration: none;
 
-  ${({ $isCurrentPage }) =>
+  ${({ $isCurrentPage, $isEdit }) =>
     $isCurrentPage
       ? css`
-          padding-right: 4.5rem;
+          padding-right: ${$isEdit ? "3.5rem" : "4.5rem"};
 
           background: ${color.gray600};
 

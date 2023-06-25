@@ -1,3 +1,5 @@
+import { atom } from "recoil";
+
 interface HistoryItemTypes {
   id: string;
   title: string;
@@ -8,7 +10,7 @@ interface HistoryItemTypes {
   }[];
 }
 
-export default <HistoryItemTypes[]>[
+const HistoryItemData = <HistoryItemTypes[]>[
   {
     id: "123",
     title: "adsfasdfaasdfasdfasdfsdf",
@@ -46,3 +48,10 @@ export default <HistoryItemTypes[]>[
     ],
   },
 ];
+
+const HistoryItemState = atom({
+  key: "HistoryItemState",
+  default: HistoryItemData,
+});
+
+export default HistoryItemState;
