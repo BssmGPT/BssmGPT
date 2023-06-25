@@ -36,6 +36,10 @@ export default function GPTField({ handleSubmit }: PropTypes) {
     }
   }, [setValue, handleSubmit]);
 
+  useEffect(() => {
+    if (textareaRef.current) textareaRef.current.value = value;
+  }, [value]);
+
   return (
     <S.Container>
       <S.Form ref={formRef}>

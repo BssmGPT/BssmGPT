@@ -6,15 +6,19 @@ import { GPTHomeItem } from "@/components/common/GPTHomeItem";
 import { Column, Row } from "@/components/common/Flex";
 import GPTField from "../common/GPTField";
 import GPTHomeContents from "@/constants/GPTHomeContents.constant";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { valueState } from "@/recoil/gptField.atom";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
-  const value = useRecoilValue(valueState);
+  const [value, setValue] = useRecoilState(valueState);
 
   const handleSubmit = () => {
     console.log(`submit ${value}`);
+  };
+
+  const inputDesciption = (description: string) => {
+    setValue(description);
   };
 
   return (
@@ -33,14 +37,23 @@ export default function GPTHome() {
                 {keyWordIcons[index]}
                 <S.KeyWord>{content.keyWord}</S.KeyWord>
               </Column>
-              <GPTHomeItem type={content.type}>
-                {content.descriptions[0]}
+              <GPTHomeItem
+                type={content.type}
+                onClick={() => inputDesciption(content.descriptions[0])}
+              >
+                "{content.descriptions[0]}" →
               </GPTHomeItem>
-              <GPTHomeItem type={content.type}>
-                {content.descriptions[1]}
+              <GPTHomeItem
+                type={content.type}
+                onClick={() => inputDesciption(content.descriptions[1])}
+              >
+                "{content.descriptions[1]}" →
               </GPTHomeItem>
-              <GPTHomeItem type={content.type}>
-                {content.descriptions[2]}
+              <GPTHomeItem
+                type={content.type}
+                onClick={() => inputDesciption(content.descriptions[2])}
+              >
+                "{content.descriptions[2]}" →
               </GPTHomeItem>
             </Column>
           ))}
