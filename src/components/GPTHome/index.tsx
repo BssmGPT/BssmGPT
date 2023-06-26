@@ -12,23 +12,48 @@ import { useCallback } from "react";
 import HistoryItemsState from "@/constants/HistoryItems.constant";
 import sendMessage from "@/utils/chat";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
+
+  const navigate = useNavigate();
 
   const setValue = useSetRecoilState(valueState);
   const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
 
   const handleSubmit = useCallback(
     async (value: string) => {
+      const newLinkId = uuidv4();
+
+      const userMessage: {
+        id: string;
+        role: "user" | "assistant";
+        content: string;
+      } = { id: uuidv4(), role: "user", content: value };
+
+      setHistoryItems(
+        historyItems.concat({
+          id: newLinkId,
+          title: "New Chat",
+          messages: [userMessage],
+        })
+      );
+
+      navigate(`/${newLinkId}`);
+
       const response = await sendMessage([{ role: "user", content: value }]);
       const message = response["choices"][0]["message"];
-      console.log(message);
+
       setHistoryItems(
-        historyItems.concat({ id: uuidv4(), title: "", messages: message })
+        historyItems.concat({
+          id: newLinkId,
+          title: `${new Date()}`,
+          messages: [userMessage, { id: uuidv4(), ...message }],
+        })
       );
     },
-    [historyItems, setHistoryItems]
+    [historyItems, setHistoryItems, navigate]
   );
 
   const inputDesciption = (description: string) => {

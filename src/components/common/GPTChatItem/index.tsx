@@ -8,7 +8,7 @@ import UserProfileImage from "../UserProfileImage";
 import GPTProfileImage from "../GPTProfileImage";
 
 interface PropTypes {
-  item: { role: "user" | "system"; content: string };
+  item: { role: "user" | "assistant"; content: string };
 }
 
 export default function GPTChatItem({ item }: PropTypes) {

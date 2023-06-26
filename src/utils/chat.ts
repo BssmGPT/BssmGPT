@@ -1,7 +1,7 @@
 const apiUrl = "https://api.openai.com/v1/chat/completions";
 
 interface MessageTypes {
-  role: "system" | "user";
+  role: "assistant" | "user";
   content: string;
 }
 
@@ -14,7 +14,7 @@ export default async function sendMessage(messages: MessageTypes[]) {
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
-      message: messages,
+      messages,
     }),
   });
 
