@@ -12,9 +12,12 @@ import { useCallback } from "react";
 import HistoryItemsState from "@/constants/HistoryItems.constant";
 import sendMessage from "@/utils/chat";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
+
+  const navigate = useNavigate();
 
   const setValue = useSetRecoilState(valueState);
   const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
@@ -32,10 +35,12 @@ export default function GPTHome() {
       setHistoryItems(
         historyItems.concat({
           id: newLinkId,
-          title: "",
+          title: "New Chat",
           messages: [userMessage],
         })
       );
+
+      navigate(`/${newLinkId}`);
 
       const response = await sendMessage([{ role: "user", content: value }]);
       const message = response["choices"][0]["message"];
@@ -43,12 +48,12 @@ export default function GPTHome() {
       setHistoryItems(
         historyItems.concat({
           id: newLinkId,
-          title: "",
+          title: `${new Date()}`,
           messages: [userMessage, { id: uuidv4(), ...message }],
         })
       );
     },
-    [historyItems, setHistoryItems]
+    [historyItems, setHistoryItems, navigate]
   );
 
   const inputDesciption = (description: string) => {
