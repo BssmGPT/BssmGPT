@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import CheckIcon from "@/assets/icons/CheckIcon";
 import CancelIcon from "@/assets/icons/CancelIcon";
 import { useRecoilState } from "recoil";
-import HistoryItemsState from "@/constants/History.constant";
+import HistoryItemsState from "@/constants/HistoryItems.constant";
 import { useNavigate } from "react-router-dom";
 
 interface PropTypes {

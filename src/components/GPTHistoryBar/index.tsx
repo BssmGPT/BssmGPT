@@ -2,7 +2,7 @@ import { Column } from "@/components/common/Flex";
 import HistoryLink from "@/components/common/HistoryLink";
 import NewChatLink from "./NewChatLink";
 import * as S from "./style";
-import History from "@/constants/History.constant";
+import History from "@/constants/HistoryItems.constant";
 import { useLocation } from "react-router-dom";
 import Features from "./Features";
 import { useRecoilValue, useSetRecoilState } from "recoil";

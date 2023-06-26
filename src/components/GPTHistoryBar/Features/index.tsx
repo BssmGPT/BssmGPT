@@ -8,7 +8,7 @@ import SettingsIcon from "@/assets/icons/SettingsIcon";
 import LogOutIcon from "@/assets/icons/LogOutIcon";
 import CheckIcon from "@/assets/icons/CheckIcon";
 import { useRecoilState } from "recoil";
-import HistoryItemsState from "@/constants/History.constant";
+import HistoryItemsState from "@/constants/HistoryItems.constant";
 import { useNavigate } from "react-router-dom";
 
 export default function Features() {
