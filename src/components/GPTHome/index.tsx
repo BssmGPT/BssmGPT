@@ -6,15 +6,33 @@ import { GPTHomeItem } from "@/components/common/GPTHomeItem";
 import { Column, Row } from "@/components/common/Flex";
 import GPTField from "../common/GPTField";
 import GPTHomeContents from "@/constants/GPTHomeContents.constant";
-import { FormEvent } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { valueState } from "@/recoil/gptField.atom";
+import { useCallback } from "react";
+import HistoryItemsState from "@/constants/HistoryItems.constant";
+import sendMessage from "@/utils/chat";
+import { v4 as uuidv4 } from "uuid";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
+  const setValue = useSetRecoilState(valueState);
+  const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
 
-    console.log("submit");
+  const handleSubmit = useCallback(
+    async (value: string) => {
+      const response = await sendMessage([{ role: "user", content: value }]);
+      const message = response["choices"][0]["message"];
+      console.log(message);
+      setHistoryItems(
+        historyItems.concat({ id: uuidv4(), title: "", messages: message })
+      );
+    },
+    [historyItems, setHistoryItems]
+  );
+
+  const inputDesciption = (description: string) => {
+    setValue(description);
   };
 
   return (
@@ -33,14 +51,23 @@ export default function GPTHome() {
                 {keyWordIcons[index]}
                 <S.KeyWord>{content.keyWord}</S.KeyWord>
               </Column>
-              <GPTHomeItem type={content.type}>
-                {content.descriptions[0]}
+              <GPTHomeItem
+                type={content.type}
+                onClick={() => inputDesciption(content.descriptions[0])}
+              >
+                "{content.descriptions[0]}" →
               </GPTHomeItem>
-              <GPTHomeItem type={content.type}>
-                {content.descriptions[1]}
+              <GPTHomeItem
+                type={content.type}
+                onClick={() => inputDesciption(content.descriptions[1])}
+              >
+                "{content.descriptions[1]}" →
               </GPTHomeItem>
-              <GPTHomeItem type={content.type}>
-                {content.descriptions[2]}
+              <GPTHomeItem
+                type={content.type}
+                onClick={() => inputDesciption(content.descriptions[2])}
+              >
+                "{content.descriptions[2]}" →
               </GPTHomeItem>
             </Column>
           ))}

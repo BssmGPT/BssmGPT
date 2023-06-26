@@ -1,8 +1,8 @@
 import { color } from "@/styles/theme.style";
 import { styled } from "styled-components";
 
-export const Wrapper = styled.div<{ role: "user" | "gpt" }>`
-  background-color: ${({ role }) => role === "gpt" && color.gray450};
+export const Wrapper = styled.div<{ role: "user" | "system" }>`
+  background-color: ${({ role }) => role === "system" && color.gray450};
 
   border: 0 solid rgba(32, 33, 35, 0.5);
   border-bottom-width: 1px;
@@ -32,7 +32,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Content = styled.div<{ role: "user" | "gpt" }>`
+export const Content = styled.div<{ role: "user" | "system" }>`
   position: relative;
   width: calc(100% - 50px);
   display: flex;

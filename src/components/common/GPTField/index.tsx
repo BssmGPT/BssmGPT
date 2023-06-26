@@ -7,38 +7,61 @@ import { valueState } from "@/recoil/gptField.atom";
 import { handleTextareaHeight } from "@/utils/handleTextareaHeight";
 
 interface PropTypes {
-  handleSubmit: React.FormEventHandler<HTMLFormElement>;
+  handleSubmit: (value: string) => void;
 }
 
 export default function GPTField({ handleSubmit }: PropTypes) {
   const [value, setValue] = useRecoilState(valueState);
 
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const firstHS = useRef(handleSubmit);
 
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
     handleTextareaHeight(textareaRef.current);
   };
 
+  const submitValue = () => {
+    handleSubmit(value);
+    setValue("");
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.shiftKey && event.key === "Enter") return;
+    if (event.key === "Enter") {
+      event.preventDefault();
+      submitValue();
+    }
+  };
+
   useEffect(() => {
-    textareaRef.current?.focus();
+    console.log(firstHS.current === handleSubmit);
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+      textareaRef.current.value = "";
+    }
   }, [handleSubmit]);
+
+  useEffect(() => {
+    if (textareaRef.current) textareaRef.current.value = value;
+  }, [value]);
 
   return (
     <S.Container>
-      <S.Form ref={formRef} onSubmit={handleSubmit}>
+      <S.Field ref={formRef}>
         <S.Textarea
           ref={textareaRef}
           rows={1}
           onChange={onChange}
+          onKeyDown={onKeyDown}
           placeholder="Send a message."
           value={value}
         />
-        <S.SubmitButton disabled={!value}>
+        <S.SubmitButton disabled={!value} onClick={submitValue}>
           <SendIcon />
         </S.SubmitButton>
-      </S.Form>
+      </S.Field>
       <GPTCopyright />
     </S.Container>
   );

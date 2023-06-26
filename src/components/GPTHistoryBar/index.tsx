@@ -1,21 +1,29 @@
 import { Column } from "@/components/common/Flex";
 import HistoryLink from "@/components/common/HistoryLink";
 import NewChatLink from "./NewChatLink";
-import { Container } from "./style";
-import History from "@/constants/History.constant";
+import * as S from "./style";
+import History from "@/constants/HistoryItems.constant";
 import { useLocation } from "react-router-dom";
 import Features from "./Features";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import SideBarIcon from "@/assets/icons/SideBarIcon";
+import { visibleSideBarState } from "@/recoil/sideBar.atom";
 
 export default function GPTHistory() {
   const location = useLocation();
-  const historyItem = useRecoilValue(History);
+  const historyItems = useRecoilValue(History);
+  const setVisibleSideBar = useSetRecoilState(visibleSideBarState);
 
   return (
-    <Container>
-      <NewChatLink />
+    <S.Container>
+      <S.TopButtons>
+        <NewChatLink />
+        <S.HideSideBarButton onClick={() => setVisibleSideBar(false)}>
+          <SideBarIcon />
+        </S.HideSideBarButton>
+      </S.TopButtons>
       <Column style={{ flex: 1 }}>
-        {historyItem.map((item) => (
+        {historyItems.map((item) => (
           <HistoryLink
             key={item.id}
             id={item.id}
@@ -25,6 +33,6 @@ export default function GPTHistory() {
         ))}
       </Column>
       <Features />
-    </Container>
+    </S.Container>
   );
 }

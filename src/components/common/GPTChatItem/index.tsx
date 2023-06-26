@@ -8,18 +8,18 @@ import UserProfileImage from "../UserProfileImage";
 import GPTProfileImage from "../GPTProfileImage";
 
 interface PropTypes {
-  chatItem: { role: "user" | "gpt"; content: string };
+  item: { role: "user" | "system"; content: string };
 }
 
-export default function GPTChatItem({ chatItem }: PropTypes) {
+export default function GPTChatItem({ item }: PropTypes) {
   return (
-    <S.Wrapper role={chatItem.role}>
+    <S.Wrapper role={item.role}>
       <S.Container>
-        {chatItem.role === "user" ? <UserProfileImage /> : <GPTProfileImage />}
+        {item.role === "user" ? <UserProfileImage /> : <GPTProfileImage />}
 
-        <S.Content role={chatItem.role}>
-          <S.Text>{chatItem.content}</S.Text>
-          {chatItem.role === "user" ? (
+        <S.Content role={item.role}>
+          <S.Text>{item.content}</S.Text>
+          {item.role === "user" ? (
             <>
               <S.ButtonWrapper>
                 <S.ButtonContainer>

@@ -1,16 +1,21 @@
-const apiUrl = 'https://api.openai.com/v1/chat/completions';
+const apiUrl = "https://api.openai.com/v1/chat/completions";
 
-export default async function sendMessage(message: string) {
+interface MessageTypes {
+  role: "system" | "user";
+  content: string;
+}
+
+export default async function sendMessage(messages: MessageTypes[]) {
   const response = await fetch(apiUrl, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${import.meta.env.VITE_API_KEY}`
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
     },
     body: JSON.stringify({
-      'model': 'gpt-3.5-turbo',
-      'messages': [{'role': 'system', 'content': 'You are a helpful assistant.'}, {'role': 'user', 'content': message}]
-    })
+      model: "gpt-3.5-turbo",
+      message: messages,
+    }),
   });
 
   const data = await response.json();
