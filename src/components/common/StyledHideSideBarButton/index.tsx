@@ -1,7 +1,7 @@
-import { color } from "@/styles/theme.style";
 import { styled } from "styled-components";
+import { color } from "@/styles/theme.style";
 
-export const Button = styled.button`
+const StyledHideSideBarButton = styled.button`
   height: 2.75rem;
   width: 2.75rem;
   display: flex;
@@ -19,4 +19,4 @@ export const Button = styled.button`
   }
 `;
 
-// 63.75
+export default StyledHideSideBarButton;

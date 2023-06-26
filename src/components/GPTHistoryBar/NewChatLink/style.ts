@@ -4,7 +4,8 @@ import { color } from "@/styles/theme.style";
 export const NavigateBox = styled.div`
   height: 2.75rem;
   padding: 0.75rem;
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 0.75rem;

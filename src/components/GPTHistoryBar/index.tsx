@@ -5,18 +5,22 @@ import * as S from "./style";
 import History from "@/constants/History.constant";
 import { useLocation } from "react-router-dom";
 import Features from "./Features";
-import { useRecoilValue } from "recoil";
-import HideSideBarButton from "../common/HideSideBarButton";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import SideBarIcon from "@/assets/icons/SideBarIcon";
+import { visibleSideBarState } from "@/recoil/sideBar.atom";
 
 export default function GPTHistory() {
   const location = useLocation();
   const historyItems = useRecoilValue(History);
+  const setVisibleSideBar = useSetRecoilState(visibleSideBarState);
 
   return (
     <S.Container>
       <S.TopButtons>
         <NewChatLink />
-        <HideSideBarButton />
+        <S.HideSideBarButton onClick={() => setVisibleSideBar(false)}>
+          <SideBarIcon />
+        </S.HideSideBarButton>
       </S.TopButtons>
       <Column style={{ flex: 1 }}>
         {historyItems.map((item) => (
