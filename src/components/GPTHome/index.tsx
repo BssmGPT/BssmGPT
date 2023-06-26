@@ -21,11 +21,31 @@ export default function GPTHome() {
 
   const handleSubmit = useCallback(
     async (value: string) => {
+      const newLinkId = uuidv4();
+
+      const userMessage: {
+        id: string;
+        role: "user" | "assistant";
+        content: string;
+      } = { id: uuidv4(), role: "user", content: value };
+
+      setHistoryItems(
+        historyItems.concat({
+          id: newLinkId,
+          title: "",
+          messages: [userMessage],
+        })
+      );
+
       const response = await sendMessage([{ role: "user", content: value }]);
       const message = response["choices"][0]["message"];
-      console.log(message);
+
       setHistoryItems(
-        historyItems.concat({ id: uuidv4(), title: "", messages: message })
+        historyItems.concat({
+          id: newLinkId,
+          title: "",
+          messages: [userMessage, { id: uuidv4(), ...message }],
+        })
       );
     },
     [historyItems, setHistoryItems]
