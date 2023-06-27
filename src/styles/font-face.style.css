@@ -114,3 +114,39 @@
   src: url(https://cdn.openai.com/common/fonts/soehne/soehne-mono-buch-kursiv.woff2)
     format("woff2");
 }
+
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
+      format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegularItalic.woff2)
+      format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegularItalic.woff)
+      format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBoldItalic.woff2)
+      format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBoldItalic.woff) format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
