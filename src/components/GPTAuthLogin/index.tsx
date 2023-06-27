@@ -18,9 +18,19 @@ export default function GPTAuthLogin() {
         <S.Button onClick={() => navigate("/u/login")}>Log in</S.Button>
       </S.Container>
       <S.BottomText>
-        <S.Link target="_blank">Terms of use</S.Link>
+        <S.NewTabLink
+          href="https://openai.com/policies/terms-of-use"
+          target="_blank"
+        >
+          Terms of use
+        </S.NewTabLink>
         <S.VerticalLink>|</S.VerticalLink>
-        <S.Link target="_blank">Privacy policy</S.Link>
+        <S.NewTabLink
+          href="https://openai.com/policies/privacy-policy"
+          target="_blank"
+        >
+          Privacy policy
+        </S.NewTabLink>
       </S.BottomText>
     </S.Wrapper>
   );

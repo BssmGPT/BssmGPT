@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import { color } from "@/styles/theme.style";
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Container = styled.div`
   padding-top: 20vh;
   position: relative;
+  flex: 1;
 `;
 
 export const ContentsBox = styled.div`

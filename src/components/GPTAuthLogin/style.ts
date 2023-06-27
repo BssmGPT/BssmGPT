@@ -40,12 +40,13 @@ export const BottomText = styled.p`
   font-size: 0.75rem;
   line-height: 1rem;
   padding: 0.75rem 0;
-  color: ${color.gray300};
   text-align: center;
 `;
 
-export const Link = styled.a`
+export const NewTabLink = styled.a`
   margin: 0 0.75rem;
+  color: ${color.gray300};
+  text-decoration: none;
 `;
 
 export const VerticalLink = styled.span`
