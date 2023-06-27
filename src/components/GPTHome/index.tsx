@@ -10,7 +10,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { valueState } from "@/recoil/gptField.atom";
 import { useCallback } from "react";
 import HistoryItemsState from "@/constants/HistoryItems.constant";
-import sendMessage from "@/utils/chat";
+import sendMessage from "@/apis/chat";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import AppTemplate from "@/templates/AppTemplate";
