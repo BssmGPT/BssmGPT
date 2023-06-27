@@ -15,7 +15,6 @@ export default function GPTField({ handleSubmit }: PropTypes) {
 
   const formRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const firstHS = useRef(handleSubmit);
 
   const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(event.target.value);
@@ -36,7 +35,6 @@ export default function GPTField({ handleSubmit }: PropTypes) {
   };
 
   useEffect(() => {
-    console.log(firstHS.current === handleSubmit);
     if (textareaRef.current) {
       textareaRef.current.focus();
       textareaRef.current.value = "";
