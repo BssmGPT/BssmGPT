@@ -1,18 +1,27 @@
-import History from "@/constants/HistoryItems.constant";
 import { useParams } from "react-router-dom";
 import * as S from "./style";
 import GPTChatItem from "@/components/common/GPTChatItem";
 import GPTField from "../common/GPTField";
-import { useRecoilState } from "recoil";
-import { useCallback } from "react";
-import sendMessage from "@/utils/chat";
+import { useCallback, useEffect, useState } from "react";
+import sendMessage from "@/apis/chat";
 import { v4 as uuidv4 } from "uuid";
+import getChatById from "@/utils/getChatById";
+import postMessage from "@/utils/postMessage";
 
 export default function GPTContent() {
   const { id } = useParams();
-  const [historyItems, setHistoryItems] = useRecoilState(History);
+  const [messages, setMessages] = useState<
+    { role: "user" | "assistant"; content: string; id: string }[]
+  >([]);
 
-  const messages = historyItems.find((item) => item.id === id)?.messages;
+  useEffect(() => {
+    id &&
+      getChatById(id).then((data) => {
+        if (Array.isArray(data)) {
+          setMessages(data);
+        }
+      });
+  }, []);
 
   const handleSubmit = useCallback(
     async (value: string) => {
@@ -25,16 +34,8 @@ export default function GPTContent() {
       } = { id: uuidv4(), role: "user", content: value };
 
       // 유저 입력 삽입
-      setHistoryItems(
-        historyItems.map((item) =>
-          item.id === id
-            ? {
-                ...item,
-                messages: [...item.messages, userMessage],
-              }
-            : item
-        )
-      );
+      id && (await postMessage(id, [...messages, userMessage]));
+      setMessages([...messages, userMessage]);
 
       const filteredMessages = messages.map((message) => ({
         role: message.role,
@@ -49,24 +50,13 @@ export default function GPTContent() {
 
       const message: { role: "user" | "assistant"; content: string } =
         response["choices"][0]["message"];
+      const gptMessage = { ...message, id: uuidv4() };
 
       // 받은 데이터 삽입
-      setHistoryItems(
-        historyItems.map((item) =>
-          item.id === id
-            ? {
-                ...item,
-                messages: [
-                  ...item.messages,
-                  userMessage,
-                  { id: uuidv4(), ...message },
-                ],
-              }
-            : item
-        )
-      );
+      id && (await postMessage(id, [...messages, userMessage, gptMessage]));
+      setMessages([...messages, userMessage, gptMessage]);
     },
-    [id, messages, historyItems, setHistoryItems]
+    [id, messages]
   );
 
   console.log(messages);
@@ -74,7 +64,7 @@ export default function GPTContent() {
   return (
     <S.Wrapper style={{ color: "white" }}>
       <S.List>
-        {messages?.map((item) => (
+        {messages?.map((item: any) => (
           <GPTChatItem key={item.id} item={item} />
         ))}
       </S.List>
