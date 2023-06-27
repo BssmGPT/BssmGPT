@@ -10,10 +10,10 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { valueState } from "@/recoil/gptField.atom";
 import { useCallback } from "react";
 import HistoryItemsState from "@/constants/HistoryItems.constant";
-import sendMessage from "@/apis/chat";
-import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import AppTemplate from "@/templates/AppTemplate";
+import { v4 as uuidv4 } from "uuid";
+import postMessages from "@/utils/postMessages";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
@@ -23,39 +23,11 @@ export default function GPTHome() {
   const setValue = useSetRecoilState(valueState);
   const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
 
-  const handleSubmit = useCallback(
-    async (value: string) => {
-      const newLinkId = uuidv4();
-
-      const userMessage: {
-        id: string;
-        role: "user" | "assistant";
-        content: string;
-      } = { id: uuidv4(), role: "user", content: value };
-
-      setHistoryItems(
-        historyItems.concat({
-          id: newLinkId,
-          title: "New Chat",
-          messages: [userMessage],
-        })
-      );
-
-      navigate(`/${newLinkId}`);
-
-      const response = await sendMessage([{ role: "user", content: value }]);
-      const message = response["choices"][0]["message"];
-
-      setHistoryItems(
-        historyItems.concat({
-          id: newLinkId,
-          title: `${new Date()}`,
-          messages: [userMessage, { id: uuidv4(), ...message }],
-        })
-      );
-    },
-    [historyItems, setHistoryItems, navigate]
-  );
+  const handleSubmit = useCallback((value: string) => {
+    const newLinkId = uuidv4();
+    postMessages(newLinkId, value, []);
+    navigate(`/c/${newLinkId}`);
+  }, []);
 
   const inputDesciption = (description: string) => {
     setValue(description);
