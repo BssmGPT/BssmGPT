@@ -69,6 +69,7 @@ export default function GPTContent() {
           {messages?.map((item) => (
             <GPTChatItem key={item.id} item={item} />
           ))}
+          <S.SizedBox />
         </S.List>
         <GPTField handleSubmit={handleSubmit} />
       </S.Container>
