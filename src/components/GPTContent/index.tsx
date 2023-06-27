@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
 import * as S from "./style";
-import GPTChatItem from "@/components/common/GPTChatItem";
+import GPTChatItem from "@/components/common/GPTChat";
 import GPTField from "../common/GPTField";
 import { useCallback, useEffect, useState } from "react";
 import sendMessage from "@/apis/chat";
 import { v4 as uuidv4 } from "uuid";
+import AppTemplate from "@/templates/AppTemplate";
 import getChatById from "@/utils/getChatById";
 import postMessage from "@/utils/postMessage";
 
@@ -62,13 +63,15 @@ export default function GPTContent() {
   console.log(messages);
 
   return (
-    <S.Wrapper style={{ color: "white" }}>
-      <S.List>
-        {messages?.map((item: any) => (
-          <GPTChatItem key={item.id} item={item} />
-        ))}
-      </S.List>
-      <GPTField handleSubmit={handleSubmit} />
-    </S.Wrapper>
+    <AppTemplate>
+      <S.Container style={{ color: "white" }}>
+        <S.List>
+          {messages?.map((item) => (
+            <GPTChatItem key={item.id} item={item} />
+          ))}
+        </S.List>
+        <GPTField handleSubmit={handleSubmit} />
+      </S.Container>
+    </AppTemplate>
   );
 }

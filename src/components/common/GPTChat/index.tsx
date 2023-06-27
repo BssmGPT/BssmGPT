@@ -5,17 +5,17 @@ import ThumbsUpIcon from "@/assets/icons/ThumbsUpIcon";
 import THumbsDownIcon from "@/assets/icons/ThumbsDownIcon";
 import { Row } from "../Flex";
 import UserProfileImage from "../UserProfileImage";
-import GPTProfileImage from "../GPTProfileImage";
+import GPTIcon from "@/assets/icons/GPTIcon";
 
 interface PropTypes {
   item: { role: "user" | "assistant"; content: string };
 }
 
-export default function GPTChatItem({ item }: PropTypes) {
+export default function GPTChat({ item }: PropTypes) {
   return (
     <S.Wrapper role={item.role}>
       <S.Container>
-        {item.role === "user" ? <UserProfileImage /> : <GPTProfileImage />}
+        {item.role === "user" ? <UserProfileImage /> : <GPTIcon />}
 
         <S.Content role={item.role}>
           <S.Text>{item.content}</S.Text>

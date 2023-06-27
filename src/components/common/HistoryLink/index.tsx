@@ -53,7 +53,7 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
 
   return (
     <S.NavigateBox
-      onClick={() => !isCurrentPage && navigate(`/${id}`)}
+      onClick={() => !isCurrentPage && navigate(`/c/${id}`)}
       $isCurrentPage={isCurrentPage}
       $isEdit={isEdit}
       $isCheck={isCheck}
