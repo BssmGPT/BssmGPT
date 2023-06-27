@@ -4,9 +4,9 @@ import GPTChatItem from "@/components/common/GPTChat";
 import GPTField from "../common/GPTField";
 import { useCallback, useEffect, useState } from "react";
 import AppTemplate from "@/templates/AppTemplate";
-import getChatById from "@/utils/getChatById";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase";
+import postMessages from "@/utils/postMessages";
 
 export default function GPTContent() {
   const { id } = useParams();
@@ -23,16 +23,16 @@ export default function GPTContent() {
       }
       console.log("Current data: ", doc.data());
     });
-    // getChatById(id).then((data) => {
-    //   if (Array.isArray(data)) {
-    //     setMessages(data);
-    //   }
-    // });
 
     return () => unsub();
-  }, []);
+  }, [id]);
 
-  const handleSubmit = useCallback(async (value: string) => {}, []);
+  const handleSubmit = useCallback(
+    (value: string) => {
+      id && postMessages(id, value, messages);
+    },
+    [id, messages]
+  );
 
   return (
     <AppTemplate>

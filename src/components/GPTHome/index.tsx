@@ -23,11 +23,14 @@ export default function GPTHome() {
   const setValue = useSetRecoilState(valueState);
   const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
 
-  const handleSubmit = useCallback((value: string) => {
-    const newLinkId = uuidv4();
-    postMessages(newLinkId, value, []);
-    navigate(`/c/${newLinkId}`);
-  }, []);
+  const handleSubmit = useCallback(
+    (value: string) => {
+      const newLinkId = uuidv4();
+      postMessages(newLinkId, value, []);
+      navigate(`/c/${newLinkId}`);
+    },
+    [navigate]
+  );
 
   const inputDesciption = (description: string) => {
     setValue(description);
