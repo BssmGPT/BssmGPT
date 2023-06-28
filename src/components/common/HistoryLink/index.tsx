@@ -8,6 +8,7 @@ import CancelIcon from "@/assets/icons/CancelIcon";
 import { useRecoilState } from "recoil";
 import HistoryItemsState from "@/constants/HistoryItems.constant";
 import { useNavigate } from "react-router-dom";
+import updateHistory from "@/utils/apis/updateHistory";
 
 interface PropTypes {
   id: string;
@@ -39,14 +40,7 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
   const changeTitle = () => {
     setIsEdit(false);
 
-    // const changedItem = historyItems.find((item) => item.id === id);
-
-    // if (changedItem) {
-    //   setHistoryItems([
-    //     { ...changedItem, title: titleValue },
-    //     ...historyItems.filter((item) => item !== changedItem),
-    //   ]);
-    // }
+    updateHistory(id, titleValue);
   };
 
   return (
