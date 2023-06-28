@@ -7,12 +7,16 @@ import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase";
 import postMessages from "@/utils/apis/postMessages";
+import { useSetRecoilState } from "recoil";
+import { loadingState } from "@/recoil/gptField.atom";
 
 export default function GPTContent() {
   const { id } = useParams();
   const [messages, setMessages] = useState<
     { role: "user" | "assistant"; content: string; id: string }[]
   >([]);
+
+  const setLoading = useSetRecoilState(loadingState);
 
   useEffect(() => {
     if (!id) return;
@@ -28,10 +32,13 @@ export default function GPTContent() {
   }, [id]);
 
   const handleSubmit = useCallback(
-    (value: string) => {
-      id && postMessages(id, value, messages);
+    async (value: string) => {
+      if (!id) return;
+      setLoading(true);
+      await postMessages(id, value, messages);
+      setLoading(false);
     },
-    [id, messages]
+    [id, messages, setLoading]
   );
 
   return (

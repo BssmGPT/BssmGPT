@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { css, keyframes, styled } from "styled-components";
 import { color } from "@/styles/theme.style";
 
 export const Container = styled.div`
@@ -38,7 +38,35 @@ export const Field = styled.div`
   }
 `;
 
-export const SubmitButton = styled.button`
+export const Loading = styled.div`
+  display: flex;
+`;
+
+const loading = (order: 1 | 2 | 3) => keyframes`
+  0% {
+    opacity: ${order > 1 ? 0 : 1};
+  }
+  33% {
+    opacity: ${order > 2 ? 0 : 1};
+  }
+  66% {
+    opacity: 1;
+  }
+`;
+
+export const LoadingDot = styled.span<{ order: 1 | 2 | 3 }>`
+  font-size: 1.5rem;
+  line-height: 2rem;
+  opacity: 1;
+  color: ${color.gray250};
+  border: 0 solid #d9d9e3;
+  animation: ${({ order }) => loading(order)} 1s infinite steps(1);
+`;
+
+export const SubmitButton = styled.button<{
+  disabled: boolean;
+  $loading: boolean;
+}>`
   border-radius: 0.375rem;
   position: absolute;
   right: 0.75em;
@@ -54,6 +82,19 @@ export const SubmitButton = styled.button`
   transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  ${({ $loading }) =>
+    $loading &&
+    css`
+      bottom: 0;
+      opacity: 1;
+    `}
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      cursor: auto;
+    `}
 
   &:not(:disabled) {
     background-color: rgb(25, 195, 125);
