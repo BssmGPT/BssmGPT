@@ -25,8 +25,6 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
   const [titleValue, setTitleValue] = useState(title);
   const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
 
-  // console.log(`${id} - edit: ${edit}`);
-
   const deleteHistory = () => {
     setIsCheck(false);
     setHistoryItems([...historyItems.filter((item) => item.id !== id)]);
@@ -41,14 +39,14 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
   const changeTitle = () => {
     setIsEdit(false);
 
-    const changedItem = historyItems.find((item) => item.id === id);
+    // const changedItem = historyItems.find((item) => item.id === id);
 
-    if (changedItem) {
-      setHistoryItems([
-        { ...changedItem, title: titleValue },
-        ...historyItems.filter((item) => item !== changedItem),
-      ]);
-    }
+    // if (changedItem) {
+    //   setHistoryItems([
+    //     { ...changedItem, title: titleValue },
+    //     ...historyItems.filter((item) => item !== changedItem),
+    //   ]);
+    // }
   };
 
   return (

@@ -14,12 +14,16 @@ import { collection, onSnapshot } from "firebase/firestore";
 export default function GPTHistoryBar() {
   const location = useLocation();
   // const historyItems = useRecoilValue(History);
-  const [histories, setHistories] = useState<any[]>([]);
+  const [histories, setHistories] = useState<{ id: string; title: string }[]>(
+    []
+  );
   const setVisibleSideBar = useSetRecoilState(visibleSideBarState);
 
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "history"), (snapshot) => {
-      setHistories(snapshot.docs.map((doc) => doc.data()));
+      setHistories(
+        snapshot.docs.map((doc) => doc.data() as { id: string; title: string })
+      );
     });
 
     return () => unsub();
@@ -39,7 +43,7 @@ export default function GPTHistoryBar() {
             key={item.id}
             id={item.id}
             title={item.title}
-            isCurrentPage={location.pathname.slice(1) === item.id}
+            isCurrentPage={location.pathname.split("/")[2] === item.id}
           />
         ))}
       </Column>

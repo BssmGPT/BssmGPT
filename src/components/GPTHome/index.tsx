@@ -6,15 +6,14 @@ import { GPTHomeItem } from "@/components/common/GPTHomeItem";
 import { Column, Row } from "@/components/common/Flex";
 import GPTField from "../common/GPTField";
 import GPTHomeContents from "@/constants/GPTHomeContents.constant";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { valueState } from "@/recoil/gptField.atom";
 import { useCallback } from "react";
-import HistoryItemsState from "@/constants/HistoryItems.constant";
 import { useNavigate } from "react-router-dom";
 import AppTemplate from "@/templates/AppTemplate";
 import { v4 as uuidv4 } from "uuid";
-import postMessages from "@/utils/postMessages";
-import postHistory from "@/utils/postHistory";
+import postMessages from "@/utils/apis/postMessages";
+import postHistory from "@/utils/apis/postHistory";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
@@ -22,13 +21,13 @@ export default function GPTHome() {
   const navigate = useNavigate();
 
   const setValue = useSetRecoilState(valueState);
-  const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
 
   const handleSubmit = useCallback(
     (value: string) => {
       const newLinkId = uuidv4();
       postMessages(newLinkId, value, []);
       navigate(`/c/${newLinkId}`);
+      postHistory(newLinkId);
     },
     [navigate]
   );

@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase";
-import postMessages from "@/utils/postMessages";
+import postMessages from "@/utils/apis/postMessages";
 
 export default function GPTContent() {
   const { id } = useParams();
