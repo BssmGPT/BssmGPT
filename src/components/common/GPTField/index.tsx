@@ -29,6 +29,7 @@ export default function GPTField({ handleSubmit }: PropTypes) {
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.nativeEvent.isComposing) return;
     if ((event.shiftKey && event.key === "Enter") || loading) return;
     if (event.key === "Enter") {
       event.preventDefault();
@@ -39,9 +40,9 @@ export default function GPTField({ handleSubmit }: PropTypes) {
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.focus();
-      textareaRef.current.value = "";
+      setValue("");
     }
-  }, [handleSubmit]);
+  }, [setValue]);
 
   useEffect(() => {
     if (textareaRef.current) textareaRef.current.value = value;
@@ -58,7 +59,11 @@ export default function GPTField({ handleSubmit }: PropTypes) {
           placeholder="Send a message."
           value={value}
         />
-        <S.SubmitButton disabled={!value || loading} onClick={submitValue}>
+        <S.SubmitButton
+          disabled={!value || loading}
+          $loading={loading}
+          onClick={submitValue}
+        >
           {loading ? (
             <>
               <S.LoadingDot order={1}>.</S.LoadingDot>

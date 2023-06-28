@@ -6,7 +6,7 @@ import { GPTHomeItem } from "@/components/common/GPTHomeItem";
 import { Column, Row } from "@/components/common/Flex";
 import GPTField from "../common/GPTField";
 import GPTHomeContents from "@/constants/GPTHomeContents.constant";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { loadingState, valueState } from "@/recoil/gptField.atom";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ export default function GPTHome() {
       navigate(`/c/${newLinkId}`);
       await postMessages(newLinkId, value, []);
 
-      setLoading(true);
+      setLoading(false);
     },
     [navigate, setLoading]
   );
