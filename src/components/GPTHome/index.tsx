@@ -29,8 +29,8 @@ export default function GPTHome() {
 
       const newLinkId = uuidv4();
       navigate(`/c/${newLinkId}`);
-      await postMessages(newLinkId, value, []);
       await postHistory(newLinkId);
+      await postMessages(newLinkId, value, []);
 
       setLoading(false);
     },

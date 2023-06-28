@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import * as S from "./style";
-import GPTChatItem from "@/components/common/GPTChat";
+import GPTChat from "@/components/common/GPTChat";
 import GPTField from "../common/GPTField";
 import { useCallback, useEffect, useState } from "react";
 import AppTemplate from "@/templates/AppTemplate";
@@ -13,7 +13,7 @@ import { loadingState } from "@/recoil/gptField.atom";
 export default function GPTContent() {
   const { id } = useParams();
   const [messages, setMessages] = useState<
-    { role: "user" | "assistant"; content: string; id: string }[]
+    { role: "user" | "assistant"; content: string; mid: string }[]
   >([]);
 
   const setLoading = useSetRecoilState(loadingState);
@@ -25,7 +25,7 @@ export default function GPTContent() {
       if (data) {
         setMessages(data);
       }
-      console.log("Current data: ", doc.data());
+      // console.log("Current data: ", doc.data());
     });
 
     return () => unsub();
@@ -45,12 +45,17 @@ export default function GPTContent() {
     <AppTemplate>
       <S.Container style={{ color: "white" }}>
         <S.List>
-          {messages?.map((item) => (
-            <GPTChatItem key={item.id} item={item} />
+          {messages?.map((item, idx) => (
+            <GPTChat
+              id={id}
+              key={item.mid}
+              item={item}
+              prevMessages={messages.slice(0, idx)}
+            />
           ))}
           <S.SizedBox />
         </S.List>
-        <GPTField handleSubmit={handleSubmit} />
+        <GPTField id={id} handleSubmit={handleSubmit} />
       </S.Container>
     </AppTemplate>
   );

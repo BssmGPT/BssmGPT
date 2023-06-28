@@ -1,5 +1,5 @@
 import { color } from "@/styles/theme.style";
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
 
 export const Wrapper = styled.div<{ role: "user" | "assistant" }>`
   background-color: ${({ role }) => role === "assistant" && color.gray450};
@@ -50,7 +50,7 @@ export const Text = styled.p``;
 
 export const ButtonWrapper = styled.div``;
 
-export const ButtonContainer = styled.div<{ $alwaysShow?: boolean }>`
+export const LogoButtonContainer = styled.div<{ $alwaysShow?: boolean }>`
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
@@ -72,7 +72,7 @@ export const ButtonContainer = styled.div<{ $alwaysShow?: boolean }>`
   }
 `;
 
-export const Button = styled.button`
+export const LogoButton = styled.button`
   display: block;
   border-radius: 0.375rem;
   background-color: transparent;
@@ -83,4 +83,29 @@ export const Button = styled.button`
     color: ${color.gray150};
     background-color: ${color.gray500};
   }
+`;
+
+export const ButtonContainer = styled.div`
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+`;
+
+export const Button = styled.button<{ $type?: "cancel" }>`
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: white;
+  background: #10a37f;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+
+  ${({ $type }) =>
+    $type === "cancel" &&
+    css`
+      color: ${color.gray150};
+      background: transparent;
+      border: 1px solid ${color.gray425};
+    `}
 `;

@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const List = styled.div`
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 export const SizedBox = styled.div`

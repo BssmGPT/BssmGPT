@@ -3,18 +3,18 @@ import { v4 as uuidv4 } from "uuid";
 import postMessage from "./postMessage";
 
 export default async function postMessages(
-  id: string,
+  mid: string,
   value: string,
-  messages: { role: "user" | "assistant"; content: string; id: string }[]
+  messages: { role: "user" | "assistant"; content: string; mid: string }[]
 ) {
   const userMessage: {
-    id: string;
+    mid: string;
     role: "user" | "assistant";
     content: string;
-  } = { id: uuidv4(), role: "user", content: value };
+  } = { mid: uuidv4(), role: "user", content: value };
 
   // 유저 입력 삽입
-  await postMessage(id, [...messages, userMessage]);
+  await postMessage(mid, [...messages, userMessage]);
 
   const filteredMessages = messages.map((message) => ({
     role: message.role,
@@ -29,10 +29,10 @@ export default async function postMessages(
 
   const message: { role: "user" | "assistant"; content: string } =
     response["choices"][0]["message"];
-  const gptMessage = { ...message, id: uuidv4() };
+  const gptMessage = { ...message, mid: uuidv4() };
 
   // 받은 데이터 삽입
-  await postMessage(id, [...messages, userMessage, gptMessage]);
+  await postMessage(mid, [...messages, userMessage, gptMessage]);
 
   return true;
 }
