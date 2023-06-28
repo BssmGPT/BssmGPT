@@ -31,8 +31,8 @@ export default async function postMessages(
     response["choices"][0]["message"];
   const gptMessage = { ...message, id: uuidv4() };
 
-  console.log(`message: ${message}`);
-
   // 받은 데이터 삽입
   await postMessage(id, [...messages, userMessage, gptMessage]);
+
+  return true;
 }

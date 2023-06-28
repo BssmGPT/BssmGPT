@@ -26,7 +26,7 @@ export default function GPTAuthLogin() {
         </S.NewTabLink>
         <S.VerticalLink>|</S.VerticalLink>
         <S.NewTabLink
-          href="https://openai.com/policies/privacy-policy"
+          href="https://openai.com/policies/privsacy-policy"
           target="_blank"
         >
           Privacy policy
