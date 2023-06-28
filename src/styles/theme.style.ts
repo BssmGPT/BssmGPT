@@ -5,6 +5,7 @@ export const color = {
   gray250: "#ACACBE",
   gray300: "#8E8EA0",
   gray400: "#8d8da01a",
+  gray425: "#565869",
   gray450: "#444654",
   gray500: "#40414F",
   gray600: "#343541",

@@ -4,13 +4,13 @@ import { setDoc, doc } from "firebase/firestore";
 export default async function postMessage(
   id: string,
   messages: {
-    id: string;
+    mid: string;
     content: string;
     role: "user" | "assistant";
   }[]
 ) {
-  console.log("postMeessage");
-  console.log(messages);
+  // console.log("postMeessage");
+  // console.log(messages);
   await setDoc(doc(db, "chat", id), {
     messages,
   });

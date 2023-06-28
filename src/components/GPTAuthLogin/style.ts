@@ -50,5 +50,5 @@ export const NewTabLink = styled.a`
 `;
 
 export const VerticalLink = styled.span`
-  color: #565869;
+  color: ${color.gray425};
 `;
