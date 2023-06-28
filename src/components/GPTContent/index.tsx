@@ -4,7 +4,6 @@ import GPTChatItem from "@/components/common/GPTChat";
 import GPTField from "../common/GPTField";
 import { useCallback, useEffect, useState } from "react";
 import AppTemplate from "@/templates/AppTemplate";
-import getChatById from "@/utils/getChatById";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase";
 
