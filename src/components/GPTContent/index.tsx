@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase";
+import postMessages from "@/utils/postMessages";
 
 export default function GPTContent() {
   const { id } = useParams();
@@ -22,16 +23,16 @@ export default function GPTContent() {
       }
       console.log("Current data: ", doc.data());
     });
-    // getChatById(id).then((data) => {
-    //   if (Array.isArray(data)) {
-    //     setMessages(data);
-    //   }
-    // });
 
     return () => unsub();
-  }, []);
+  }, [id]);
 
-  const handleSubmit = useCallback(async (value: string) => {}, []);
+  const handleSubmit = useCallback(
+    (value: string) => {
+      id && postMessages(id, value, messages);
+    },
+    [id, messages]
+  );
 
   return (
     <AppTemplate>
@@ -40,6 +41,7 @@ export default function GPTContent() {
           {messages?.map((item) => (
             <GPTChatItem key={item.id} item={item} />
           ))}
+          <S.SizedBox />
         </S.List>
         <GPTField handleSubmit={handleSubmit} />
       </S.Container>
