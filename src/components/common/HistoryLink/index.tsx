@@ -5,9 +5,9 @@ import DeleteIcon from "@/assets/icons/DeleteIcon";
 import { useRef, useState } from "react";
 import CheckIcon from "@/assets/icons/CheckIcon";
 import CancelIcon from "@/assets/icons/CancelIcon";
-import { useRecoilState } from "recoil";
-import HistoryItemsState from "@/constants/HistoryItems.constant";
 import { useNavigate } from "react-router-dom";
+import updateHistory from "@/utils/apis/updateHistory";
+import deleteHistory from "@/utils/apis/deleteHistory";
 
 interface PropTypes {
   id: string;
@@ -21,16 +21,12 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
   const titleInputRef = useRef<HTMLInputElement>(null);
 
   const [isEdit, setIsEdit] = useState(false);
-  const [isCheck, setIsCheck] = useState(false);
+  const [isCheckDelete, setIsCheck] = useState(false);
   const [titleValue, setTitleValue] = useState(title);
-  const [historyItems, setHistoryItems] = useRecoilState(HistoryItemsState);
 
-  // console.log(`${id} - edit: ${edit}`);
-
-  const deleteHistory = () => {
+  const removeHistory = () => {
     setIsCheck(false);
-    setHistoryItems([...historyItems.filter((item) => item.id !== id)]);
-    navigate("/", { replace: true });
+    deleteHistory(id).then(() => navigate("/", { replace: true }));
   };
 
   const cancelEdit = () => {
@@ -41,14 +37,7 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
   const changeTitle = () => {
     setIsEdit(false);
 
-    const changedItem = historyItems.find((item) => item.id === id);
-
-    if (changedItem) {
-      setHistoryItems([
-        { ...changedItem, title: titleValue },
-        ...historyItems.filter((item) => item !== changedItem),
-      ]);
-    }
+    updateHistory(id, titleValue);
   };
 
   return (
@@ -56,9 +45,9 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
       onClick={() => !isCurrentPage && navigate(`/c/${id}`)}
       $isCurrentPage={isCurrentPage}
       $isEdit={isEdit}
-      $isCheck={isCheck}
+      $isCheckDelete={isCheckDelete}
     >
-      {isCheck ? <DeleteIcon /> : <ChattingIcon />}
+      {isCheckDelete ? <DeleteIcon /> : <ChattingIcon />}
       {isEdit ? (
         <S.TitleInputWrapper
           onSubmit={(e) => {
@@ -92,9 +81,9 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
             </S.IconButton>
           </>
         )}
-        {isCheck && (
+        {isCheckDelete && (
           <>
-            <S.IconButton onClick={deleteHistory}>
+            <S.IconButton onClick={removeHistory}>
               <CheckIcon />
             </S.IconButton>
             <S.IconButton onClick={() => setIsCheck(false)}>
@@ -102,7 +91,7 @@ export default function HistoryLink({ id, title, isCurrentPage }: PropTypes) {
             </S.IconButton>
           </>
         )}
-        {isCurrentPage && !isCheck && !isEdit && (
+        {isCurrentPage && !isCheckDelete && !isEdit && (
           <>
             <S.IconButton onClick={() => setIsEdit(true)}>
               <TitleEditIcon />

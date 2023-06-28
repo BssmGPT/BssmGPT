@@ -12,7 +12,8 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AppTemplate from "@/templates/AppTemplate";
 import { v4 as uuidv4 } from "uuid";
-import postMessages from "@/utils/postMessages";
+import postMessages from "@/utils/apis/postMessages";
+import postHistory from "@/utils/apis/postHistory";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
@@ -29,6 +30,7 @@ export default function GPTHome() {
       const newLinkId = uuidv4();
       navigate(`/c/${newLinkId}`);
       await postMessages(newLinkId, value, []);
+      await postHistory(newLinkId);
 
       setLoading(false);
     },
