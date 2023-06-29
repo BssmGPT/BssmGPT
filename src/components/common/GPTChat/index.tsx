@@ -34,10 +34,6 @@ export default function GPTChat({ id, item, prevMessages }: PropTypes) {
     [id, prevMessages, setLoading]
   );
 
-  // console.log(`isEdit ${isEdit}, role: ${item.role}`);
-
-  // console.log(`value: ${value}`);
-
   return (
     <S.Wrapper role={item.role}>
       <S.Container>
