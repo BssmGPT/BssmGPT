@@ -1,7 +1,7 @@
-import { loadingState, valueState } from "@/recoil/gptField.atom";
+import { loadingState } from "@/recoil/gptField.atom";
 import { handleTextareaHeight } from "@/utils/handleTextareaHeight";
-import { ForwardedRef, forwardRef, useEffect, useRef } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect, useRef } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 
 interface PropTypes {

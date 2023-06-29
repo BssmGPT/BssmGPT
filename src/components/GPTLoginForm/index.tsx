@@ -25,7 +25,7 @@ export default function GPTLoginForm() {
           <S.Form>
             <S.Button onClick={handleClick}>
               <GoogleIcon />
-              asdf
+              Continue with Google
             </S.Button>
           </S.Form>
         </S.MainContent>

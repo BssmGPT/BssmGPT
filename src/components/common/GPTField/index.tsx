@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import GPTCopyright from "./GPTCopyright";
 import * as S from "./style";
 import SendIcon from "@/assets/icons/SendIcon";
