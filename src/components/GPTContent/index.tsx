@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import * as S from "./style";
 import GPTChat from "@/components/common/GPTChat";
 import GPTField from "../common/GPTField";
@@ -19,8 +19,7 @@ export default function GPTContent() {
 
   const userObj = useRecoilValue(userObjState);
 
-  const navigate = useNavigate()
-  const [check, setCheck] = useState(true)
+  const [check, setCheck] = useState(false);
 
   console.log(userObj);
 
@@ -28,13 +27,12 @@ export default function GPTContent() {
 
   useEffect(() => {
     if (!id) return;
-      onSnapshot(doc(db, "history", id), (doc) => {
-      if (doc.exists() && doc.data().uid === auth.currentUser?.uid) {
-        setCheck(false)
+    onSnapshot(doc(db, "history", id), (doc) => {
+      if (!(doc.exists() && doc.data().uid === auth.currentUser?.uid)) {
+        setCheck(true);
       }
-      setCheck(true)
-    })
-      const unsub = onSnapshot(doc(db, "chat", id), (doc) => {
+    });
+    const unsub = onSnapshot(doc(db, "chat", id), (doc) => {
       const data = doc.data()?.messages;
       if (data && !check) {
         setMessages(data);
@@ -42,7 +40,7 @@ export default function GPTContent() {
     });
 
     return () => unsub();
-  }, [id]);
+  }, [id, check]);
 
   const handleSubmit = useCallback(
     async (value: string) => {
@@ -58,17 +56,18 @@ export default function GPTContent() {
     <AppTemplate>
       <S.Container style={{ color: "white" }}>
         <S.List>
-        {
-            !check ? messages?.map((item, idx) => (
+          {!check ? (
+            messages?.map((item, idx) => (
               <GPTChat
                 id={id}
                 key={item.mid}
                 item={item}
                 prevMessages={messages.slice(0, idx)}
               />
-            )) : <Navigate to="/" />
-          
-      }
+            ))
+          ) : (
+            <Navigate to="/" />
+          )}
           <S.SizedBox />
         </S.List>
         <GPTField id={id} handleSubmit={handleSubmit} />
