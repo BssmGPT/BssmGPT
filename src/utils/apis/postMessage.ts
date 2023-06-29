@@ -4,10 +4,10 @@ import { setDoc, doc } from "firebase/firestore";
 export default async function postMessage(
   id: string,
   messages: {
-    mid: string;
-    content: string;
     role: "user" | "assistant";
-  }[]
+    content: string;
+    mid: string;
+  }[],
 ) {
   // console.log("postMeessage");
   // console.log(messages);
