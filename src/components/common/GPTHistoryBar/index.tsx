@@ -47,7 +47,7 @@ export default function GPTHistoryBar() {
           />
         ))}
       </Column>
-      <Features />
+      <Features historiesId={histories.map((history) => history.id)} />
     </S.Container>
   );
 }

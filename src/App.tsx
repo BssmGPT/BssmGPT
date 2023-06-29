@@ -16,13 +16,8 @@ function App() {
     userObjState
   );
 
-  console.log("userObj");
-  console.log(userObj);
-
   useEffect(() => {
     onAuth((user) => {
-      console.log("user");
-      console.log(user);
       if (user) {
         const { displayName, photoURL } = user;
         setUserObj({
