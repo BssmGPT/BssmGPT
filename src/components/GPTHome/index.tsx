@@ -14,6 +14,7 @@ import AppTemplate from "@/templates/AppTemplate";
 import { v4 as uuidv4 } from "uuid";
 import postMessages from "@/utils/apis/postMessages";
 import postHistory from "@/utils/apis/postHistory";
+import { auth } from "@/services/firebase";
 
 export default function GPTHome() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
@@ -29,7 +30,7 @@ export default function GPTHome() {
 
       const newLinkId = uuidv4();
       navigate(`/c/${newLinkId}`);
-      await postHistory(newLinkId);
+      await postHistory(newLinkId, auth.currentUser?.uid || "user");
       await postMessages(newLinkId, value, []);
 
       setLoading(false);
