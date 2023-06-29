@@ -10,6 +10,8 @@ import CheckIcon from "@/assets/icons/CheckIcon";
 import { useRecoilState } from "recoil";
 import HistoryItemsState from "@/constants/HistoryItems.constant";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "@/services/firebase";
 
 export default function Features() {
   const navigate = useNavigate();
@@ -47,6 +49,11 @@ export default function Features() {
     navigate("/");
   };
 
+  const handleLogoutClick = () => {
+    console.log(auth.currentUser);
+    signOut(auth).then(() => navigate("/auth/login"));
+  };
+
   return (
     <S.Wrapper ref={wrapperRef}>
       <S.ToggleButton $isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
@@ -78,7 +85,7 @@ export default function Features() {
           Settings
         </S.Button>
         <S.HorizontalLine />
-        <S.Button>
+        <S.Button onClick={handleLogoutClick}>
           <LogOutIcon />
           Log out
         </S.Button>
