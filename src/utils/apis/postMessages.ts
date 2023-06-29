@@ -1,7 +1,6 @@
 import sendMessage from "@/apis/chat";
 import { v4 as uuidv4 } from "uuid";
 import postMessage from "./postMessage";
-import { auth } from "@/services/firebase";
 
 export default async function postMessages(
   mid: string,
@@ -13,8 +12,6 @@ export default async function postMessages(
     role: "user" | "assistant";
     content: string;
   } = { mid: uuidv4(), role: "user", content: value };
-
-  auth.currentUser?.uid;
 
   // 유저 입력 삽입
   await postMessage(mid, [...messages, userMessage]);

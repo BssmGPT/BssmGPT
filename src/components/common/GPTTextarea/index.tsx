@@ -9,7 +9,7 @@ interface PropTypes {
   placeholder?: string;
   value: string;
   setValue: React.Dispatch<string>;
-  renderableState?: any;
+  renderableState?: string;
 }
 
 export default function GPTTextarea({
@@ -40,7 +40,6 @@ export default function GPTTextarea({
 
   useEffect(() => {
     if (renderableState) {
-      console.log("focus and clear");
       textareaRef.current?.focus();
       setValue("");
     }

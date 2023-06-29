@@ -12,8 +12,13 @@ import HistoryItemsState from "@/constants/HistoryItems.constant";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "@/services/firebase";
+import deleteAllHistories from "@/utils/apis/deleteAllHistories";
 
-export default function Features() {
+interface PropTypes {
+  historiesId: string[];
+}
+
+export default function Features({ historiesId }: PropTypes) {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -21,8 +26,6 @@ export default function Features() {
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  const [historyItems, serHistoryItems] = useRecoilState(HistoryItemsState);
 
   const closeMenuRef = useRef(({ target }: Event) => {
     if (!wrapperRef.current?.contains(target as Node)) {
@@ -42,10 +45,10 @@ export default function Features() {
     }
   }, [isOpen]);
 
-  const deleteAllHistory = () => {
+  const removeAllHistories = async () => {
     setIsCheck(false);
     setIsOpen(false);
-    serHistoryItems([]);
+    await deleteAllHistories(historiesId);
     navigate("/");
   };
 
@@ -65,9 +68,9 @@ export default function Features() {
         <MenuIcon />
       </S.ToggleButton>
       <S.Menu ref={menuRef} className="hidden">
-        {historyItems.length > 0 && (
+        {historiesId.length > 0 && (
           <S.Button
-            onClick={() => (isCheck ? deleteAllHistory() : setIsCheck(true))}
+            onClick={() => (isCheck ? removeAllHistories() : setIsCheck(true))}
           >
             {isCheck ? <CheckIcon /> : <DeleteIcon />}
             {isCheck ? "Confirm clear conversations" : "Clear conversations"}
