@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 interface PropTypes {
   size?: string;
+  url: string;
 }
 
-export default function UserProfileImage({ size = "30px" }: PropTypes) {
-  return <ProfileImage size={size} src={Profile} alt="user-profile-image" />;
+export default function UserProfileImage({ size = "30px", url }: PropTypes) {
+  return <ProfileImage size={size} src={url} alt="user-profile-image" />;
 }
 
 const ProfileImage = styled.img<{ size: string }>`

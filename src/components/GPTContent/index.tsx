@@ -7,14 +7,19 @@ import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/services/firebase";
 import postMessages from "@/utils/apis/postMessages";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loadingState } from "@/recoil/gptField.atom";
+import { userObjState } from "@/recoil/userObj.atom";
 
 export default function GPTContent() {
   const { id } = useParams();
   const [messages, setMessages] = useState<
     { role: "user" | "assistant"; content: string; mid: string }[]
   >([]);
+
+  const userObj = useRecoilValue(userObjState);
+
+  console.log(userObj);
 
   const setLoading = useSetRecoilState(loadingState);
 
@@ -25,7 +30,6 @@ export default function GPTContent() {
       if (data) {
         setMessages(data);
       }
-      // console.log("Current data: ", doc.data());
     });
 
     return () => unsub();
