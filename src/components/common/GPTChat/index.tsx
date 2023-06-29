@@ -11,6 +11,7 @@ import postMessages from "@/utils/apis/postMessages";
 import GPTTextarea from "../GPTTextarea";
 import { useSetRecoilState } from "recoil";
 import { loadingState } from "@/recoil/gptField.atom";
+import { auth } from "@/services/firebase";
 
 interface PropTypes {
   id?: string;
@@ -40,7 +41,11 @@ export default function GPTChat({ id, item, prevMessages }: PropTypes) {
   return (
     <S.Wrapper role={item.role}>
       <S.Container>
-        {item.role === "user" ? <UserProfileImage /> : <GPTIcon />}
+        {item.role === "user" ? (
+          <UserProfileImage url={auth.currentUser?.photoURL || ""} />
+        ) : (
+          <GPTIcon />
+        )}
 
         <S.Content role={item.role}>
           {isEdit ? (

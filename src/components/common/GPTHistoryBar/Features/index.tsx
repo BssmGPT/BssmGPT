@@ -57,8 +57,11 @@ export default function Features() {
   return (
     <S.Wrapper ref={wrapperRef}>
       <S.ToggleButton $isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-        <UserProfileImage size="1.25rem" />
-        <S.UserName>asdf</S.UserName>
+        <UserProfileImage
+          url={auth.currentUser?.photoURL || ""}
+          size="1.25rem"
+        />
+        <S.UserName>{auth.currentUser?.displayName}</S.UserName>
         <MenuIcon />
       </S.ToggleButton>
       <S.Menu ref={menuRef} className="hidden">
