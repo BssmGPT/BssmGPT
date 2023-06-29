@@ -1,4 +1,3 @@
-import Profile from "@/assets/profile.webp";
 import styled from "styled-components";
 
 interface PropTypes {
