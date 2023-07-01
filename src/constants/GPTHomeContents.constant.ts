@@ -1,10 +1,10 @@
-interface GPTHomeContentTypes {
+interface HomeContentTypes {
   keyWord: string;
   descriptions: string[];
   type?: "button";
 }
 
-export default <GPTHomeContentTypes[]>[
+export default <HomeContentTypes[]>[
   {
     keyWord: "Examples",
     descriptions: [

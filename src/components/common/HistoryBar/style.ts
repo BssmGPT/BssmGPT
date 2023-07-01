@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import StyledHideSideBarButton from "../StyledHideSideBarButton";
+import StyledHideSideBarButton from "../ToggleSideBarButton";
 
 export const Container = styled.nav`
   height: 100vh;

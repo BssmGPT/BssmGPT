@@ -2,7 +2,7 @@ import GPTIcon from "@/assets/icons/GPTIcon";
 import * as S from "./style";
 import { useNavigate } from "react-router-dom";
 
-export default function GPTAuthLogin() {
+export default function Login() {
   const navigate = useNavigate();
 
   return (

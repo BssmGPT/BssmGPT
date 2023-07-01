@@ -12,7 +12,7 @@ interface PropTypes {
   renderableState?: string;
 }
 
-export default function GPTTextarea({
+export default function Textarea({
   value,
   setValue,
   submitValue,
@@ -50,7 +50,7 @@ export default function GPTTextarea({
   }, [value]);
 
   return (
-    <Textarea
+    <StyledTextarea
       ref={textareaRef}
       rows={1}
       onChange={onChange}
@@ -61,7 +61,7 @@ export default function GPTTextarea({
   );
 }
 
-const Textarea = styled.textarea`
+const StyledTextarea = styled.textarea`
   resize: none;
   width: 100%;
   max-height: 200px;

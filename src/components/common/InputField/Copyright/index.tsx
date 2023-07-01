@@ -1,7 +1,16 @@
-import { styled } from "styled-components";
 import { color } from "@/styles/theme.style";
+import styled from "styled-components";
 
-export const Copyright = styled.footer`
+export default function Copyright() {
+  return (
+    <Paragraph>
+      Free Research Preview. ChatGPT may produce inaccurate information about
+      people, places, or facts. ChatGPT May 24 Version
+    </Paragraph>
+  );
+}
+
+export const Paragraph = styled.footer`
   padding: 0.75rem 1rem 1.5rem;
   color: ${color.gray200};
   font-size: 0.75rem;

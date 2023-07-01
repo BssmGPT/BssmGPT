@@ -1,7 +1,7 @@
 import { Navigate, useParams } from "react-router-dom";
 import * as S from "./style";
-import GPTChat from "@/components/common/GPTChat";
-import GPTField from "../common/GPTField";
+import ChatItem from "@/components/common/ChatItem";
+import InputField from "@/components/common/InputField";
 import { useCallback, useEffect, useState } from "react";
 import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -11,7 +11,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { loadingState } from "@/recoil/gptField.atom";
 import { userObjState } from "@/recoil/userObj.atom";
 
-export default function GPTContent() {
+export default function Content() {
   const { id } = useParams();
   const [messages, setMessages] = useState<
     { role: "user" | "assistant"; content: string; mid: string }[]
@@ -58,7 +58,7 @@ export default function GPTContent() {
         <S.List>
           {!check ? (
             messages?.map((item, idx) => (
-              <GPTChat
+              <ChatItem
                 id={id}
                 key={item.mid}
                 item={item}
@@ -70,7 +70,7 @@ export default function GPTContent() {
           )}
           <S.SizedBox />
         </S.List>
-        <GPTField id={id} handleSubmit={handleSubmit} />
+        <InputField id={id} handleSubmit={handleSubmit} />
       </S.Container>
     </AppTemplate>
   );

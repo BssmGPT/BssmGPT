@@ -11,18 +11,20 @@ import { useEffect, useState } from "react";
 import { auth, db } from "@/services/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 
-export default function GPTHistoryBar() {
+export default function HistoryBar() {
   const location = useLocation();
   // const historyItems = useRecoilValue(History);
-  const [histories, setHistories] = useState<{ id: string; title: string; uid: string}[]>(
-    []
-  );
+  const [histories, setHistories] = useState<
+    { id: string; title: string; uid: string }[]
+  >([]);
   const setVisibleSideBar = useSetRecoilState(visibleSideBarState);
 
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "history"), (snapshot) => {
       setHistories(
-        snapshot.docs.map((doc) => doc.data() as { id: string; title: string; uid: string})
+        snapshot.docs.map(
+          (doc) => doc.data() as { id: string; title: string; uid: string }
+        )
       );
     });
 
@@ -38,16 +40,16 @@ export default function GPTHistoryBar() {
         </S.HideSideBarButton>
       </S.TopButtons>
       <Column style={{ flex: 1 }}>
-        {histories.map((item) => (
-          item.uid === auth.currentUser?.uid ? 
-          <HistoryLink
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            isCurrentPage={location.pathname.split("/")[2] === item.id}
-          />
-          : null
-        ))}
+        {histories.map((item) =>
+          item.uid === auth.currentUser?.uid ? (
+            <HistoryLink
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              isCurrentPage={location.pathname.split("/")[2] === item.id}
+            />
+          ) : null
+        )}
       </Column>
       <Features historiesId={histories.map((history) => history.id)} />
     </S.Container>

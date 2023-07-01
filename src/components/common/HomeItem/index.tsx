@@ -6,7 +6,7 @@ interface PropTypes {
   onClick?: () => void;
 }
 
-export function GPTHomeItem({ children, type, onClick }: PropTypes) {
+export default function HomeItem({ children, type, onClick }: PropTypes) {
   return type === "button" ? (
     <S.ItemButton onClick={onClick}>{children}</S.ItemButton>
   ) : (

@@ -2,10 +2,10 @@ import * as S from "./style";
 import SunIcon from "@/assets/icons/SunIcon";
 import ThunderIcon from "@/assets/icons/ThunderIcon";
 import CautionIcon from "@/assets/icons/CautionIcon";
-import { GPTHomeItem } from "@/components/common/GPTHomeItem";
+import HomeItem from "@/components/common/HomeItem";
 import { Column, Row } from "@/components/common/Flex";
-import GPTField from "../common/GPTField";
-import GPTHomeContents from "@/constants/GPTHomeContents.constant";
+import InputField from "@/components/common/InputField";
+import HomeContentsConstant from "@/constants/GPTHomeContents.constant";
 import { useSetRecoilState } from "recoil";
 import { loadingState, valueState } from "@/recoil/gptField.atom";
 import { useCallback } from "react";
@@ -16,7 +16,7 @@ import postMessages from "@/utils/apis/postMessages";
 import postHistory from "@/utils/apis/postHistory";
 import { auth } from "@/services/firebase";
 
-export default function GPTHome() {
+export default function Home() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
 
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export default function GPTHome() {
           <S.ContentsBox>
             <S.Title>BSSMGPT</S.Title>
             <Row gap="0.875rem">
-              {GPTHomeContents.map((content, index) => (
+              {HomeContentsConstant.map((content, index) => (
                 <Column
                   gap="0.875rem"
                   alignitems="center"
@@ -56,30 +56,30 @@ export default function GPTHome() {
                     {keyWordIcons[index]}
                     <S.KeyWord>{content.keyWord}</S.KeyWord>
                   </Column>
-                  <GPTHomeItem
+                  <HomeItem
                     type={content.type}
                     onClick={() => setValue(content.descriptions[0])}
                   >
                     "{content.descriptions[0]}" →
-                  </GPTHomeItem>
-                  <GPTHomeItem
+                  </HomeItem>
+                  <HomeItem
                     type={content.type}
                     onClick={() => setValue(content.descriptions[1])}
                   >
                     "{content.descriptions[1]}" →
-                  </GPTHomeItem>
-                  <GPTHomeItem
+                  </HomeItem>
+                  <HomeItem
                     type={content.type}
                     onClick={() => setValue(content.descriptions[2])}
                   >
                     "{content.descriptions[2]}" →
-                  </GPTHomeItem>
+                  </HomeItem>
                 </Column>
               ))}
             </Row>
           </S.ContentsBox>
         </S.Container>
-        <GPTField handleSubmit={handleSubmit} />
+        <InputField handleSubmit={handleSubmit} />
       </S.Wrapper>
     </AppTemplate>
   );

@@ -8,7 +8,7 @@ import UserProfileImage from "../UserProfileImage";
 import GPTIcon from "@/assets/icons/GPTIcon";
 import { useCallback, useState } from "react";
 import postMessages from "@/utils/apis/postMessages";
-import GPTTextarea from "../GPTTextarea";
+import Textarea from "../Textarea";
 import { useSetRecoilState } from "recoil";
 import { loadingState } from "@/recoil/gptField.atom";
 import { auth } from "@/services/firebase";
@@ -19,7 +19,7 @@ interface PropTypes {
   prevMessages: { role: "user" | "assistant"; content: string; mid: string }[];
 }
 
-export default function GPTChat({ id, item, prevMessages }: PropTypes) {
+export default function ChatItem({ id, item, prevMessages }: PropTypes) {
   const [value, setValue] = useState(item.content);
   const [isEdit, setIsEdit] = useState(false);
   const setLoading = useSetRecoilState(loadingState);
@@ -45,7 +45,7 @@ export default function GPTChat({ id, item, prevMessages }: PropTypes) {
 
         <S.Content role={item.role}>
           {isEdit ? (
-            <GPTTextarea
+            <Textarea
               value={value}
               setValue={setValue}
               submitValue={() => handleSubmit(value)}

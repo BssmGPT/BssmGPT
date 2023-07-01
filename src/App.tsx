@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { GlobalStyle } from "./styles/global.style";
 import { Navigate, Route, Routes } from "react-router-dom";
-import GPTHome from "./components/GPTHome";
-import GPTContent from "./components/GPTContent";
-import GPTAuthLogin from "./components/GPTAuthLogin";
-import GPTLoginForm from "./components/GPTLoginForm";
+import Home from "@/pages/Home";
+import Content from "@/pages/Content";
+import Login from "./pages/Login";
+import LoginForm from "@/pages/AuthForm";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { UserObjTypes, userObjState } from "./recoil/userObj.atom";
@@ -38,13 +38,13 @@ function App() {
         <Routes>
           {userObj ? (
             <>
-              <Route path="/" element={<GPTHome />} />
-              <Route path="/c/:id" element={<GPTContent />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/c/:id" element={<Content />} />
             </>
           ) : (
             <>
-              <Route path="/u/login" element={<GPTLoginForm />} />
-              <Route path="/auth/login" element={<GPTAuthLogin />} />
+              <Route path="/u/login" element={<LoginForm />} />
+              <Route path="/auth/login" element={<Login />} />
               <Route path="*" element={<Navigate to="/auth/login" />} />
             </>
           )}

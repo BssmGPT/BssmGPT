@@ -1,17 +1,17 @@
 import { useRef } from "react";
-import GPTCopyright from "./GPTCopyright";
+import Copyright from "./Copyright";
 import * as S from "./style";
 import SendIcon from "@/assets/icons/SendIcon";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { loadingState, valueState } from "@/recoil/gptField.atom";
-import GPTTextarea from "../GPTTextarea";
+import Textarea from "../Textarea";
 
 interface PropTypes {
   id?: string;
   handleSubmit: (value: string) => void;
 }
 
-export default function GPTField({ id, handleSubmit }: PropTypes) {
+export default function InputField({ id, handleSubmit }: PropTypes) {
   const [value, setValue] = useRecoilState(valueState);
 
   const formRef = useRef<HTMLDivElement>(null);
@@ -25,7 +25,7 @@ export default function GPTField({ id, handleSubmit }: PropTypes) {
   return (
     <S.Container>
       <S.Field ref={formRef}>
-        <GPTTextarea
+        <Textarea
           value={value}
           setValue={setValue}
           submitValue={submitValue}
@@ -48,7 +48,7 @@ export default function GPTField({ id, handleSubmit }: PropTypes) {
           )}
         </S.SubmitButton>
       </S.Field>
-      <GPTCopyright />
+      <Copyright />
     </S.Container>
   );
 }

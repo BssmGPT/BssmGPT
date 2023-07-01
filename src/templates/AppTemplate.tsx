@@ -1,6 +1,6 @@
 import SideBarIcon from "@/assets/icons/SideBarIcon";
-import GPTHistoryBar from "@/components/common/GPTHistoryBar";
-import StyledHideSideBarButton from "@/components/common/StyledHideSideBarButton";
+import HistoryBar from "@/components/common/HistoryBar";
+import StyledHideSideBarButton from "@/components/common/ToggleSideBarButton";
 import { visibleSideBarState } from "@/recoil/sideBar.atom";
 import { color } from "@/styles/theme.style";
 import { useRecoilState } from "recoil";
@@ -16,10 +16,10 @@ export default function AppTemplate({
 
   return (
     <>
-      <GPTHistoryBarWrapper $visibleSideBar={visibleSideBar}>
-        <GPTHistoryBar />
-      </GPTHistoryBarWrapper>
-      <GPTMainWrapper>
+      <HistoryBarWrapper $visibleSideBar={visibleSideBar}>
+        <HistoryBar />
+      </HistoryBarWrapper>
+      <MainWrapper>
         <HideSideBar
           $visibleSideBar={visibleSideBar}
           onClick={() => setVisibleSideBar(true)}
@@ -27,12 +27,12 @@ export default function AppTemplate({
           <SideBarIcon />
         </HideSideBar>
         {children}
-      </GPTMainWrapper>
+      </MainWrapper>
     </>
   );
 }
 
-const GPTHistoryBarWrapper = styled.div<{ $visibleSideBar: boolean }>`
+const HistoryBarWrapper = styled.div<{ $visibleSideBar: boolean }>`
   background-color: ${color.gray700};
   flex-shrink: 0;
   transition: width 0.15s;
@@ -40,7 +40,7 @@ const GPTHistoryBarWrapper = styled.div<{ $visibleSideBar: boolean }>`
   overflow: hidden;
 `;
 
-const GPTMainWrapper = styled.div`
+const MainWrapper = styled.div`
   position: relative;
   flex-grow: 1;
   background: ${color.gray600};

@@ -4,7 +4,7 @@ import GoogleIcon from "@/assets/icons/GoogleIcon";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "@/services/firebase";
 import { useNavigate } from "react-router-dom";
-export default function GPTLoginForm() {
+export default function AuthForm() {
   const navigate = useNavigate();
 
   const handleClick = () => {
