@@ -2,13 +2,11 @@ import { Navigate, useParams } from "react-router-dom";
 import * as S from "./style";
 import ChatItem from "@/components/ChatItem";
 import InputField from "@/components/InputField";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "@/services/firebase";
-import postMessages from "@/utils/apis/postMessages";
-import { useSetRecoilState } from "recoil";
-import { loadingState } from "@/recoil/gptField.atom";
+import useGenerateChat from "@/hooks/useGenerateChat";
 
 export default function Content() {
   const { id } = useParams();
@@ -16,42 +14,32 @@ export default function Content() {
     { role: "user" | "assistant"; content: string; mid: string }[]
   >([]);
 
-  const [check, setCheck] = useState(false);
-
-  const setLoading = useSetRecoilState(loadingState);
+  const [isMyChat, setIsMyChat] = useState(true);
 
   useEffect(() => {
     if (!id) return;
     onSnapshot(doc(db, "history", id), (doc) => {
       if (!(doc.exists() && doc.data().uid === auth.currentUser?.uid)) {
-        setCheck(true);
+        setIsMyChat(false);
       }
     });
     const unsub = onSnapshot(doc(db, "chat", id), (doc) => {
       const data = doc.data()?.messages;
-      if (data && !check) {
+      if (data && isMyChat) {
         setMessages(data);
       }
     });
 
     return () => unsub();
-  }, [id, check]);
+  }, [id, isMyChat]);
 
-  const handleSubmit = useCallback(
-    async (value: string) => {
-      if (!id) return;
-      setLoading(true);
-      await postMessages(id, value, messages);
-      setLoading(false);
-    },
-    [id, messages, setLoading]
-  );
+  const handleSubmit = useGenerateChat(id, messages);
 
   return (
     <AppTemplate>
       <S.Container style={{ color: "white" }}>
         <S.List>
-          {!check ? (
+          {isMyChat ? (
             messages?.map((item, idx) => (
               <ChatItem
                 id={id}

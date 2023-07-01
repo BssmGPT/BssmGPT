@@ -7,36 +7,16 @@ import { Column, Row } from "@/components/Flex";
 import InputField from "@/components/InputField";
 import HomeContentsConstant from "@/constants/HomeContents.constant";
 import { useSetRecoilState } from "recoil";
-import { loadingState, valueState } from "@/recoil/gptField.atom";
-import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { valueState } from "@/recoil/gptField.atom";
 import AppTemplate from "@/templates/AppTemplate";
-import { v4 as uuidv4 } from "uuid";
-import postMessages from "@/utils/apis/postMessages";
-import postHistory from "@/utils/apis/postHistory";
-import { auth } from "@/services/firebase";
+import useGenerateNewChat from "@/hooks/useGenerateNewChat";
 
 export default function Home() {
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
 
-  const navigate = useNavigate();
-
   const setValue = useSetRecoilState(valueState);
-  const setLoading = useSetRecoilState(loadingState);
 
-  const handleSubmit = useCallback(
-    async (value: string) => {
-      setLoading(true);
-
-      const newLinkId = uuidv4();
-      navigate(`/c/${newLinkId}`);
-      await postHistory(newLinkId, auth.currentUser?.uid || "user");
-      await postMessages(newLinkId, value, []);
-
-      setLoading(false);
-    },
-    [navigate, setLoading]
-  );
+  const generateNewChat = useGenerateNewChat();
 
   return (
     <AppTemplate>
@@ -79,7 +59,7 @@ export default function Home() {
             </Row>
           </S.ContentsBox>
         </S.Container>
-        <InputField handleSubmit={handleSubmit} />
+        <InputField handleSubmit={generateNewChat} />
       </S.Wrapper>
     </AppTemplate>
   );
