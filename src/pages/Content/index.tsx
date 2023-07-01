@@ -7,9 +7,8 @@ import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "@/services/firebase";
 import postMessages from "@/utils/apis/postMessages";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { loadingState } from "@/recoil/gptField.atom";
-import { userObjState } from "@/recoil/userObj.atom";
 
 export default function Content() {
   const { id } = useParams();
@@ -17,11 +16,7 @@ export default function Content() {
     { role: "user" | "assistant"; content: string; mid: string }[]
   >([]);
 
-  const userObj = useRecoilValue(userObjState);
-
   const [check, setCheck] = useState(false);
-
-  console.log(userObj);
 
   const setLoading = useSetRecoilState(loadingState);
 

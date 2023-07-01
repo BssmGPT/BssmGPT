@@ -6,15 +6,19 @@ import Content from "@/pages/Content";
 import Login from "./pages/Login";
 import LoginForm from "@/pages/AuthForm";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { UserObjTypes, userObjState } from "./recoil/userObj.atom";
 import onAuth from "./utils/onAuth";
+
+interface UserObjTypes {
+  displayName: string;
+  photoURL: string;
+}
 
 function App() {
   const [init, setInit] = useState(false);
-  const [userObj, setUserObj] = useRecoilState<UserObjTypes | null>(
-    userObjState
-  );
+  const [userObj, setUserObj] = useState<UserObjTypes | null>({
+    displayName: "",
+    photoURL: "",
+  });
 
   useEffect(() => {
     onAuth((user) => {
