@@ -1,6 +1,6 @@
 import SideBarIcon from "@/assets/icons/SideBarIcon";
-import HistoryBar from "@/components/common/HistoryBar";
-import StyledHideSideBarButton from "@/components/common/ToggleSideBarButton";
+import HistoryBar from "@/components/HistoryBar";
+import StyledHideSideBarButton from "@/components/ToggleSideBarButton";
 import { visibleSideBarState } from "@/recoil/sideBar.atom";
 import { color } from "@/styles/theme.style";
 import { useRecoilState } from "recoil";

@@ -1,7 +1,7 @@
 import { Navigate, useParams } from "react-router-dom";
 import * as S from "./style";
-import ChatItem from "@/components/common/ChatItem";
-import InputField from "@/components/common/InputField";
+import ChatItem from "@/components/ChatItem";
+import InputField from "@/components/InputField";
 import { useCallback, useEffect, useState } from "react";
 import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";

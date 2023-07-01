@@ -1,4 +1,4 @@
-import sendMessage from "@/apis/chat";
+import sendMessage from "@/apis/sendMessage";
 import { v4 as uuidv4 } from "uuid";
 import postMessage from "./postMessage";
 

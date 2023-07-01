@@ -1,5 +1,5 @@
-import { Column } from "@/components/common/Flex";
-import HistoryLink from "@/components/common/HistoryLink";
+import { Column } from "@/components/Flex";
+import HistoryLink from "@/components/HistoryBar/HistoryLink";
 import NewChatLink from "./NewChatLink";
 import * as S from "./style";
 import { useLocation } from "react-router-dom";

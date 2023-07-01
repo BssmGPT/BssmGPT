@@ -1,4 +1,4 @@
-import UserProfileImage from "@/components/common/UserProfileImage";
+import UserProfileImage from "@/components/UserProfileImage";
 import * as S from "./style";
 import MenuIcon from "@/assets/icons/MenuIcon";
 import { useEffect, useRef, useState } from "react";
