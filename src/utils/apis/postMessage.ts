@@ -7,10 +7,8 @@ export default async function postMessage(
     role: "user" | "assistant";
     content: string;
     mid: string;
-  }[],
+  }[]
 ) {
-  // console.log("postMeessage");
-  // console.log(messages);
   await setDoc(doc(db, "chat", id), {
     messages,
   });
