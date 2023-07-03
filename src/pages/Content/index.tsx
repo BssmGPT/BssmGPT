@@ -3,7 +3,6 @@ import * as S from "./style";
 import ChatItem from "@/components/ChatItem";
 import InputField from "@/components/InputField";
 import { useEffect, useState } from "react";
-import AppTemplate from "@/templates/AppTemplate";
 import { doc, onSnapshot } from "firebase/firestore";
 import { auth, db } from "@/services/firebase";
 import useGenerateChat from "@/hooks/useGenerateChat";
@@ -36,7 +35,7 @@ export default function Content() {
     });
 
     return () => {
-      console.log("est");
+      console.log("test");
       unsubHistory();
       unsubChat();
     };
@@ -51,25 +50,23 @@ export default function Content() {
   };
 
   return (
-    <AppTemplate>
-      <S.Container style={{ color: "white" }}>
-        <S.List>
-          {isMyChat ? (
-            messages?.map((item, idx) => (
-              <ChatItem
-                id={id}
-                key={item.mid}
-                item={item}
-                prevMessages={messages.slice(0, idx)}
-              />
-            ))
-          ) : (
-            <Navigate to="/" />
-          )}
-          <S.SizedBox />
-        </S.List>
-        <InputField id={id} handleSubmit={() => handleSubmit()} />
-      </S.Container>
-    </AppTemplate>
+    <S.Container style={{ color: "white" }}>
+      <S.List>
+        {isMyChat ? (
+          messages?.map((item, idx) => (
+            <ChatItem
+              id={id}
+              key={item.mid}
+              item={item}
+              prevMessages={messages.slice(0, idx)}
+            />
+          ))
+        ) : (
+          <Navigate to="/" />
+        )}
+        <S.SizedBox />
+      </S.List>
+      <InputField id={id} handleSubmit={handleSubmit} />
+    </S.Container>
   );
 }

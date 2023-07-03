@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import LoginForm from "@/pages/AuthForm";
 import { useEffect, useState } from "react";
 import onAuth from "./utils/onAuth";
+import AppTemplate from "./templates/AppTemplate";
 
 interface UserObjTypes {
   displayName: string;
@@ -38,22 +39,21 @@ function App() {
   return (
     <Container>
       <GlobalStyle />
-      {init && (
-        <Routes>
-          {userObj ? (
-            <>
+      {init &&
+        (userObj ? (
+          <AppTemplate>
+            <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/c/:id" element={<Content />} />
-            </>
-          ) : (
-            <>
-              <Route path="/u/login" element={<LoginForm />} />
-              <Route path="/auth/login" element={<Login />} />
-              <Route path="*" element={<Navigate to="/auth/login" />} />
-            </>
-          )}
-        </Routes>
-      )}
+            </Routes>
+          </AppTemplate>
+        ) : (
+          <Routes>
+            <Route path="/u/login" element={<LoginForm />} />
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="*" element={<Navigate to="/auth/login" />} />
+          </Routes>
+        ))}
     </Container>
   );
 }
