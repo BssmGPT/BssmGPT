@@ -6,12 +6,12 @@ import THumbsDownIcon from "@/assets/icons/ThumbsDownIcon";
 import { Row } from "../Flex";
 import UserProfileImage from "../UserProfileImage";
 import GPTIcon from "@/assets/icons/GPTIcon";
-import { useCallback, useState } from "react";
-import postMessages from "@/utils/apis/postMessages";
+import { useState } from "react";
 import Textarea from "../Textarea";
 import { useSetRecoilState } from "recoil";
 import { loadingState } from "@/recoil/gptField.atom";
 import { auth } from "@/services/firebase";
+import useGenerateChat from "@/hooks/useGenerateChat";
 
 interface PropTypes {
   id?: string;
@@ -24,15 +24,13 @@ export default function ChatItem({ id, item, prevMessages }: PropTypes) {
   const [isEdit, setIsEdit] = useState(false);
   const setLoading = useSetRecoilState(loadingState);
 
-  const handleSubmit = useCallback(
-    async (value: string) => {
-      if (!id) return;
-      setLoading(true);
-      await postMessages(id, value, prevMessages);
-      setLoading(false);
-    },
-    [id, prevMessages, setLoading]
-  );
+  const updateChat = useGenerateChat();
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    await updateChat(id as string, value, prevMessages);
+    setLoading(false);
+  };
 
   return (
     <S.Wrapper role={item.role}>
@@ -48,7 +46,7 @@ export default function ChatItem({ id, item, prevMessages }: PropTypes) {
             <Textarea
               value={value}
               setValue={setValue}
-              submitValue={() => handleSubmit(value)}
+              submitValue={handleSubmit}
             />
           ) : (
             <S.Text>{item.content}</S.Text>
@@ -58,9 +56,7 @@ export default function ChatItem({ id, item, prevMessages }: PropTypes) {
               <S.ButtonWrapper>
                 {isEdit ? (
                   <S.ButtonContainer>
-                    <S.Button onClick={() => handleSubmit(value)}>
-                      Save & Submit
-                    </S.Button>
+                    <S.Button onClick={handleSubmit}>Save & Submit</S.Button>
                     <S.Button $type="cancel" onClick={() => setIsEdit(false)}>
                       Cancel
                     </S.Button>

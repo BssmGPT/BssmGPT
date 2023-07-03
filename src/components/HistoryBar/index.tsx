@@ -13,7 +13,6 @@ import { collection, onSnapshot } from "firebase/firestore";
 
 export default function HistoryBar() {
   const location = useLocation();
-  // const historyItems = useRecoilValue(History);
   const [histories, setHistories] = useState<
     { id: string; title: string; uid: string }[]
   >([]);

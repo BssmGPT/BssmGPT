@@ -6,17 +6,32 @@ import HomeItem from "@/components/HomeItem";
 import { Column, Row } from "@/components/Flex";
 import InputField from "@/components/InputField";
 import HomeContentsConstant from "@/constants/HomeContents.constant";
-import { useSetRecoilState } from "recoil";
-import { valueState } from "@/recoil/gptField.atom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { loadingState, valueState } from "@/recoil/gptField.atom";
 import AppTemplate from "@/templates/AppTemplate";
-import useGenerateNewChat from "@/hooks/useGenerateNewChat";
+import useGenerateChat from "@/hooks/useGenerateChat";
+import { v4 as uuidv4 } from "uuid";
+import useGenerateHistory from "@/hooks/useGenerateHistory";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   const keyWordIcons = [<SunIcon />, <ThunderIcon />, <CautionIcon />];
 
-  const setValue = useSetRecoilState(valueState);
+  const [value, setValue] = useRecoilState(valueState);
+  const setLoading = useSetRecoilState(loadingState);
 
-  const generateNewChat = useGenerateNewChat();
+  const generateNewChat = useGenerateChat();
+  const generateHistory = useGenerateHistory();
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    const id = uuidv4();
+    await generateNewChat(id, value);
+    await generateHistory(id);
+    navigate(`/c/${id}`);
+    setLoading(false);
+  };
 
   return (
     <AppTemplate>
@@ -59,7 +74,7 @@ export default function Home() {
             </Row>
           </S.ContentsBox>
         </S.Container>
-        <InputField handleSubmit={generateNewChat} />
+        <InputField handleSubmit={handleSubmit} />
       </S.Wrapper>
     </AppTemplate>
   );

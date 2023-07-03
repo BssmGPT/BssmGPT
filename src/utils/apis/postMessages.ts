@@ -22,14 +22,23 @@ export default async function postMessages(
   }));
 
   // 기존 데이터 + 유저 입력을 기반한 데이터 받아옴
-  const response = await sendMessage([
+  /* const response = await sendMessage([
     ...filteredMessages,
     { role: "user", content: value },
   ]);
 
   const message: { role: "user" | "assistant"; content: string } =
     response["choices"][0]["message"];
-  const gptMessage = { ...message, mid: uuidv4() };
+  const gptMessage = { ...message, mid: uuidv4() }; */
+  const gptMessage: {
+    role: "user" | "assistant";
+    content: string;
+    mid: string;
+  } = {
+    role: "assistant",
+    content: "몰루?",
+    mid: uuidv4(),
+  };
 
   // 받은 데이터 삽입
   await postMessage(mid, [...messages, userMessage, gptMessage]);
